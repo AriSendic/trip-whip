@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  venue_id: MyString
+  food_id: MyString
+
+two:
+  user_id: MyString
+  venue_id: MyString
+  food_id: MyString
