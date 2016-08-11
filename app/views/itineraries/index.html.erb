@@ -1,0 +1,8 @@
+<h3>Your recent trips: </h3>
+<% @itineraries.each do |itinerary| %>
+  <ul>
+  <li><%= itinerary.title %></li> 
+   <li><a href="/itinerary/<%=itinerary.id%>">Leave a trip tip! </a></li>
+  </ul>
+<% end %>  
+<h2>Choose your activities:</h2>

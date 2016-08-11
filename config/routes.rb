@@ -2,15 +2,18 @@ Rails.application.routes.draw do
   get '/' => 'itineraries#index'
   get '/itinerary' => 'itineraries#index'
   get '/itinerary/new' => 'itineraries#new'
-  post '/itinerary' => 'itinerary#create'
-  get '/itinerary/:id' => 'itinerary#show'
-  get '/itinerary/:id/edit' => 'itinerary#edit'
-  patch '/itinerary/:id' => 'itinerary#update'
+  post '/itinerary' => 'itineraries#create'
+  get '/itinerary/:id' => 'itineraries#show'
+  get '/itinerary/:id/edit' => 'itineraries#edit'
+  patch '/itinerary/:id' => 'itineraries#update'
   get '/signup' => 'users#new'
   post '/users' => 'users#create'   
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+  get '/projects' => 'projects#index'
+  get 'projects/:id' => 'projects#show'
+  get '/projects/:id/edit' => 'projects#edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration
       t.text :instructions
       t.text :materials
       t.integer :time
-      t.string :user_id
+      t.integer :user_id
       t.timestamps null: false
     end
   end

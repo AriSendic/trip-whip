@@ -1,0 +1,9 @@
+<% @data.businesses.each do |venue| %>
+
+<h2>name: <%= venue.name%></h2>
+<h2><%= venue.location.display_address%></h2>
+<h2>lat: <%= venue.location.coordinate.latitude%></h2>
+<h2>long: <%= venue.location.coordinate.longitude%></h2>
+<h5>Rating:<%= venue.rating%> (<%= venue.review_count %> reviews)</h5>
+<h5>ID: <%= venue.id%></h5> 
+<%end%>

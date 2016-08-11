@@ -11,21 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803235313) do
+ActiveRecord::Schema.define(version: 20160811001715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "itineraries", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "venue_id"
-    t.string   "food_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "title"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "user_id"
+    t.integer  "user_id"
     t.string   "venue_id"
     t.text     "text"
     t.integer  "time"
@@ -38,7 +37,20 @@ ActiveRecord::Schema.define(version: 20160803235313) do
     t.text     "instructions"
     t.text     "materials"
     t.integer  "time"
-    t.string   "user_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "itinerary_id"
+    t.integer  "sort"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string   "api_id"
+    t.string   "name"
+    t.string   "lat"
+    t.string   "lng"
+    t.integer  "itinerary_id"
+    t.integer  "sort"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -49,6 +61,17 @@ ActiveRecord::Schema.define(version: 20160803235313) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.string   "api_id"
+    t.string   "name"
+    t.string   "lat"
+    t.string   "lng"
+    t.integer  "itinerary_id"
+    t.integer  "sort"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end

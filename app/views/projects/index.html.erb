@@ -1,0 +1,7 @@
+<% @projects.each do |project| %>
+<li>Name: <%= project.name %></li>
+<li>Materials: <%= project.materials %></li>
+<li>Time needed: <%= project.time %> minutes</li>
+<li>Created by <%= project.user.name %></li>
+<li>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</li>
+<%end%>

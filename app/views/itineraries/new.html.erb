@@ -1,2 +1,12 @@
 new.html.erb
-<!-- search form  -->
+      <%= form_tag "/itinerary", method: :post do %>
+        <div>
+         <%= label_tag :term, "please enter a search term" %>
+    <%= text_field_tag :term %>
+        </div>
+        <%= label_tag :city, "please enter a city and state (ex. Chicago, IL)" %>
+    <%= text_field_tag :city %>
+        <div>
+        </div>
+        <%= submit_tag 'Submit' %>
+        <%end%>
