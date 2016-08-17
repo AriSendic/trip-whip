@@ -1,3 +1,12 @@
-<h2><%= @itinerary.venue_id%></h2>
-
-<h3><%= @itinerary.food_id %></h3> 
+<!-- show venues, restaurants and projects with the itinerary id  (in sort order)
+venues with name and address   restaurant with name and address,  project name and materials  -->
+<% @itinerary.venues.each do |venue| %>
+  <%= venue.name %>
+  <=% Post.where(user_id=? and venue_id=?", current_user.id, venue.id).text %>
+  <% end %>
+ <% @itinerary.restaurants.each do |restaurant| %>
+  <%= restaurant.name%>
+  <% end %>
+  <% @itinerary.projects.each do |project| %>
+  <%= project.name %>
+  <% end %>
