@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get '/' => 'itineraries#index'
   get '/itinerary' => 'itineraries#index'
+  post '/itinerary/new' => 'itineraries#new'
   get '/itinerary/new' => 'itineraries#new'
   post '/itinerary' => 'itineraries#create'
   get '/itinerary/:id' => 'itineraries#show'

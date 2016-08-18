@@ -41,20 +41,33 @@
 
     <h3>Your recent trips: </h3>
     <% @itineraries.each do |itinerary| %>
-      
-        <h3><a href="/itinerary/<%=itinerary.id%>"><%= itinerary.title %></a></h3>
-        <%= itinerary.friendly_time %> 
-        <% itinerary.venues.each do |venue| %>
+      <h3><a href="/itinerary/<%=itinerary.id%>"><%= itinerary.title %></a></h3>
+      <%= itinerary.friendly_time %> 
+      <% itinerary.venues.each do |venue| %>
          <p><%= venue.name %></p>
-        <% end %>  
-        <% itinerary.restaurants.each do |restaurant| %>
+      <% end %>  
+      <% itinerary.restaurants.each do |restaurant| %>
         <p><%= restaurant.name %></p>
-        <% end %>      
-        <% itinerary.projects.each do |project| %>
-         <p><%= project.name %></p>
-        <% end %>  
-      
+      <% end %>      
+      <% itinerary.projects.each do |project| %>
+        <p><%= project.name %></p>
+      <% end %>  
     <% end %>  
+
+    <%= form_tag '/itinerary/new', method: "post" do %>
+      <div class="form-group">
+        <%= label_tag :city, 'Please enter your city:'%>
+        <%= text_field_tag :city %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :category, 'Please enter your category:'%>
+        <%= text_field_tag :category %>
+      </div> 
+      <div class="btn btn-default">
+        <%= submit_tag 'Submit' %>
+      </div>
+    <% end %>  
+    
     
 <!-- Neighborhood and State, 3 boxes  to add a trip restaurant project  trip box shouldbe a dropdown with types, -->
 <!-- display of whatever's itinerary_id is = to current itinerary id, display of restaurants whose itinerary id = this venue's 

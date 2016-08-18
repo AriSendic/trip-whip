@@ -1,12 +1,14 @@
 <!-- show venues, restaurants and projects with the itinerary id  (in sort order)
 venues with name and address   restaurant with name and address,  project name and materials  -->
 <% @itinerary.venues.each do |venue| %>
-  <%= venue.name %>
-  <=% Post.where(user_id=? and venue_id=?", current_user.id, venue.id).text %>
-  <% end %>
- <% @itinerary.restaurants.each do |restaurant| %>
-  <%= restaurant.name%>
-  <% end %>
-  <% @itinerary.projects.each do |project| %>
-  <%= project.name %>
+    <p>Venue: <%= venue.name %></p>
+    <p> Address: <%= venue.address%></p>
+    <p>Your trip-tip: <%= Post.where("user_id=? and api_id=?", current_user.id, venue.api_id)[0].text%>
+<% end %>
+<% @itinerary.restaurants.each do |restaurant| %>
+  <p>Restaurant: <%= restaurant.name%></p>
+  <p> Address: <%= restaurant.address%></p>
+<% end %>
+<% @itinerary.projects.each do |project| %>
+  <p>Project: <%= project.name %></p>
   <% end %>

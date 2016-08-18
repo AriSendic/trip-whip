@@ -39,7 +39,7 @@ names.each do |name|
       sort: 1
     )
     post = Post.create(
-      venue_id: venue.id,
+      api_id: venue.api_id,
       text: Faker::Lorem.paragraph(6),
       time: rand(30..600),
       user_id: user.id

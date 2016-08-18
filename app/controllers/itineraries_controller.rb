@@ -3,10 +3,14 @@ class ItinerariesController < ApplicationController
   require 'unirest'
   def index
     @itineraries = Itinerary.where("user_id=?", current_user.id).limit(3)
+
   end 
   
   def new
-    
+    city = params[:city]
+    category = params[:category]
+    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
+    @data = @client.spots_by_query("#{category} near #{city}")
   end
 
   def create
@@ -18,22 +22,25 @@ class ItinerariesController < ApplicationController
   end
 
   def edit
-    client = Yelp::Client.new(
-      consumer_key: ENV['CONSUMER_KEY'],
-      consumer_secret: ENV['CONSUMER_SECRET'],
-      token: ENV['TOKEN'],
-      token_secret: ENV['TOKEN_SECRET']
-    )
+    # @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
+    # @data = @client.spot('<%=  %>')
+    # client = Yelp::Client.new(
+    #   consumer_key: ENV['CONSUMER_KEY'],
+    #   consumer_secret: ENV['CONSUMER_SECRET'],
+    #   token: ENV['TOKEN'],
+    #   token_secret: ENV['TOKEN_SECRET']
+    # )
 
-    @data = client.search('Chicago', {
-      category_filter: 'amusementparks,aquariums' 
+    # @data = client.search('Chicago', {
+    #   category_filter: 'amusementparks,aquariums' 
      
-      })
+    #   })
  # coordinates= {latitude: 41.8917756275199, longitude: -87.6070864272309} 
  #      @data = client.search('Chicago', coordinates, {
  #      category_filter: 'restaurants'
  #    })
  #    render json: @data
+    
   end
   
   def update
