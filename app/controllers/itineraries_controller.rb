@@ -22,10 +22,10 @@ class ItinerariesController < ApplicationController
   end
 
   def edit
-    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
-    @data = @client.spot('<%=  %>')
+    # @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
+    # @data = @client.spot('<%=  %>')
     
-    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
+    
     
   end
   

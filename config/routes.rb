@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   get '/' => 'itineraries#index'
   get '/index' => 'itineraries#index'
-  post '/itinerary/new' => 'itineraries#new'
-  get '/itinerary/new' => 'itineraries#new'
+  post '/itinerary' => 'itineraries#new'
+  get '/itinerary' => 'itineraries#new'
   get '/itinerary/:id' => 'itineraries#show'
   get '/itinerary/:id/edit' => 'itineraries#edit'
   patch '/itinerary/:id' => 'itineraries#update'
