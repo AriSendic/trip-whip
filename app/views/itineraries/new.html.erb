@@ -1,14 +1,1 @@
-<% @data.each do|venue| %>
 
-<h4>lat: <%= venue.lat %></h4>
-<h4>lng: <%= venue.lng%></h4>
-<h4>name: <%= venue.name %></h4>
-<h4>formatted_address: <%= venue.formatted_address %></h4>
-<h4>rating: <%= venue.rating%></h4>
-<h4>price_level: <%= venue.price_level %></h4>
-<%= form_tag '/venues/new', method: :post do %>
-  <%= hidden_field_tag :venue_id, venue.place_id %> 
-  <%= submit_tag "More info" %>
-<%end%>
-<p>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</p>
-<%end%>

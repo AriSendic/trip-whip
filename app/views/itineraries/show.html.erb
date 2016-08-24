@@ -3,26 +3,13 @@ venues with name and address   restaurant with name and address,  project name a
 <h2><%= @itinerary.title %></h2>
 <h4><% @itinerary.venues.each do |venue| %>
 <p>Venue: <%= venue.name %></p>
-<p> Address: <%= venue.address%></p></h4>
-<h3>add a nearby venue</h3>
-<%= form_tag '/itinerary/edit', method: "post" do %>
-  <div class="form-group">
-    <%= label_tag :category, 'Please enter your category:'%>
-    <%= text_field_tag :category %>
-    <%= submit_tag, "Submit" %>
-  </div>  
+<p>Address: <%= venue.address %></p></h4>
+<p>Phone: <%= venue.phone %>
 <% end %>
-
-<h3>add a nearby restaurant</h3>
-<%= form_tag '/itinerary/edit', method: "post" do %>
-  <div class="form-group">
-    <%= label_tag :category, 'Please enter your category:'%>
-    <%= text_field_tag :category %>
-    <%= submit_tag, "Submit" %>
-  <% end %>
 <% @itinerary.restaurants.each do |restaurant| %>
-  <p>Restaurant: <%= restaurant.name%></p>
-  <p> Address: <%= restaurant.address%></p>
+  <p>Restaurant: <%= restaurant.name %></p>
+  <p>Address: <%= restaurant.address %></p>
+  <p>Phone: <% restaurant.phone %>
 <% end %>
 <% @itinerary.projects.each do |project| %>
   <p>Project: <%= project.name %></p>

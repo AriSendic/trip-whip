@@ -13,7 +13,14 @@ class ItinerariesController < ApplicationController
     @data = @client.spots_by_query("#{category} near #{city}")
   end
 
-  
+  def create
+    @itinerary = Itinerary.new(
+      name: params[:name],
+      user_id: current_user.id
+      )
+    @itinerary.save
+    redirect_to ''
+  end
     
   
 

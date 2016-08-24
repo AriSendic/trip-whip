@@ -11,6 +11,7 @@ class VenuesController < ApplicationController
         @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@venue_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
         
   end  
+  
   def create
     @venue = Venue.new(
       api_id: params[:api_id],
