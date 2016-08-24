@@ -53,8 +53,8 @@
         <p><%= project.name %></p>
       <% end %>  
     <% end %>  
-
-    <%= form_tag '/itinerary/new', method: "post" do %>
+    
+    <%= form_tag "/itinerary/new", method: "post" do %>
       <div class="form-group">
         <%= label_tag :city, 'Please enter your city:'%>
         <%= text_field_tag :city %>
@@ -897,3 +897,6 @@ itinerary id  link to remove from itinerary -->
         </div>
       </div> <!-- / .container -->
     </div> <!-- / .section -->
+
+
+    <script src="/js/custom_hero.js"></script>
