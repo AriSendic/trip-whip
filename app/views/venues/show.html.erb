@@ -5,7 +5,7 @@
 <h4><%= @data["result"]["geometry"]["location"]["lng"] %></h4>
 <%= @data["result"]["place_id"]%>
 
-<%= form_tag "/venues", method: :post do %>
+<%= form_tag "/itinerary", method: :post do %>
   <div>
     <%= hidden_field_tag :api_id, @data["result"]["place_id"] %>
     <%= hidden_field_tag :name, @data["result"]["name"] %>
