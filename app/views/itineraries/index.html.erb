@@ -54,7 +54,7 @@
       <% end %>  
     <% end %>  
     
-    <%= form_tag "/venues/index", method: "post" do %>
+    <%= form_tag "/venues", method: "post" do %>
       <div class="form-group">
         <%= label_tag :city, 'Please enter your city:'%>
         <%= text_field_tag :city %>
@@ -69,10 +69,10 @@
     <% end %>  
     
     
-<!-- Neighborhood and State, 3 boxes  to add a trip restaurant project  trip box shouldbe a dropdown with types, -->
-<!-- display of whatever's itinerary_id is = to current itinerary id, display of restaurants whose itinerary id = this venue's 
+
+, display of restaurants whose itinerary id = this venue's 
 itinerary id  link to remove from itinerary -->
-<!-- link to name itinerary and save -->
+
     <!-- KEY FEATURES
     ============================== -->
     <div class="section section_features">

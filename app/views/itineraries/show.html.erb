@@ -5,6 +5,16 @@ venues with name and address   restaurant with name and address,  project name a
 <p>Venue: <%= venue.name %></p>
 <p>Address: <%= venue.address %></p></h4>
 <p>Phone: <%= venue.phone %>
+<h3>add a nearby restaurant</h3>
+<%= form_tag '/restaurants', method: "post" do %>
+  <div class="form-group">
+    <%= label_tag :type, 'What kind of restaurant?'%>
+    <%= text_field_tag :type %>
+    <%= hidden_field_tag :lat, venue.lat %>
+    <%= hidden_field_tag :lng, venue.lng %>
+    <%= submit_tag "Submit" %>
+  <% end %>
+
 <% end %>
 <% @itinerary.restaurants.each do |restaurant| %>
   <p>Restaurant: <%= restaurant.name %></p>

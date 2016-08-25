@@ -3,7 +3,6 @@ class ItinerariesController < ApplicationController
   require 'unirest'
   def index
     @itineraries = Itinerary.where("user_id=?", current_user.id).limit(3)
-    # name your itin and start a new one
   end 
   
   def new
@@ -29,8 +28,7 @@ class ItinerariesController < ApplicationController
   end
 
   def edit
-    # @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
-    # @data = @client.spot('<%=  %>')
+   
     
     
     

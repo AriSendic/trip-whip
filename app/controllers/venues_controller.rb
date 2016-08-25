@@ -5,12 +5,7 @@ class VenuesController < ApplicationController
     @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
     @data = @client.spots_by_query("#{category} near #{city}")
   end
-     
-  def new
-        @venue_id = params[:venue_id]
-        @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@venue_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
-        
-  end  
+    
   
   def create
     @venue = Venue.new(
@@ -28,6 +23,6 @@ class VenuesController < ApplicationController
 
   def show
     @venue_id = params[:venue_id]
-        @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@venue_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
+    @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@venue_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
   end  
 end
