@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   post '/itinerary' => 'venues#create'
   post '/restaurants' => 'restaurants#index'
   get '/restaurants' => 'restaurants#index'
+  post '/restaurants/show' => 'restaurants#show'
+  get '/restaurants/show' => 'restaurants#show'
+  patch '/itinerary' => "restaurants#create"
   get '/signup' => 'users#new'
   post '/users' => 'users#create'   
   get '/login' => 'sessions#new'
