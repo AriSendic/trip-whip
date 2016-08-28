@@ -1,6 +1,8 @@
 <h1><%= @data["result"]["name"] %></h1>
 <h2><%= @data["result"]["formatted_address"] %></h2>
-<h3>Hours: <%= @data["result"]["opening_hours"]["weekday_text"]%></h3>
+<% if @data["result"]["opening_hours"] %>
+  <h3>Hours: <%= @data["result"]["opening_hours"]["weekday_text"] %></h3>
+<% end %>
 <h4><%= @data["result"]["geometry"]["location"]["lat"] %></h4>
 <h4><%= @data["result"]["geometry"]["location"]["lng"] %></h4>
 
