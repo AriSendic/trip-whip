@@ -6,19 +6,16 @@ class ItinerariesController < ApplicationController
   end 
   
   def new
-    city = params[:city]
-    category = params[:category]
-    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
-    @data = @client.spots_by_query("#{category} near #{city}")
+    
   end
 
   def create
     @itinerary = Itinerary.new(
-      name: params[:name],
+      title: params[:title],
       user_id: current_user.id
-      )
+    )
     @itinerary.save
-    redirect_to ''
+    redirect_to "/itineraries/#{@itinerary.id}"
   end
     
   

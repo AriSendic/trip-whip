@@ -1,12 +1,29 @@
 <!-- show venues, restaurants and projects with the itinerary id  (in sort order)
 venues with name and address   restaurant with name and address,  project name and materials  -->
+<% if @itinerary.venues.count == 0 %>
+<h2>Start with a venue: </h2>  
+  <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
+    <div class="form-group">
+      <%= label_tag :city, 'Please enter your city:'%>
+      <%= text_field_tag :city %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :category, 'Please enter your category:'%>
+      <%= text_field_tag :category %>
+    </div> 
+    <div class="btn btn-default">
+      <%= submit_tag 'Submit' %>
+    </div>
+  <% end %>  
+<% end %>
+<% if @itinerary.venues.count > 0 %>
 <h2><%= @itinerary.title %></h2>
 <h4><% @itinerary.venues.each do |venue| %>
 <p>Venue: <%= venue.name %></p>
 <p>Address: <%= venue.address %></p></h4>
 <p>Phone: <%= venue.phone %>
 <h3>add a nearby restaurant</h3>
-<%= form_tag '/restaurants', method: "post" do %>
+<%= form_tag "/itineraries/#{@itinerary.id}/restaurants", method: :get do %>
   <div class="form-group">
     <%= label_tag :type, 'What kind of restaurant?'%>
     <%= text_field_tag :type %>
@@ -19,8 +36,9 @@ venues with name and address   restaurant with name and address,  project name a
 <% @itinerary.restaurants.each do |restaurant| %>
   <p>Restaurant: <%= restaurant.name %></p>
   <p>Address: <%= restaurant.address %></p>
-  <p>Phone: <% restaurant.phone %>
+  <p>Phone: <%= restaurant.phone %>
 <% end %>
 <% @itinerary.projects.each do |project| %>
   <p>Project: <%= project.name %></p>
   <% end %>
+<% end %>

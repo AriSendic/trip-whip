@@ -53,25 +53,19 @@
         <p><%= project.name %></p>
       <% end %>  
     <% end %>  
-    
-    <%= form_tag "/venues", method: "post" do %>
-      <div class="form-group">
-        <%= label_tag :city, 'Please enter your city:'%>
-        <%= text_field_tag :city %>
-      </div>
-      <div class="form-group">
-        <%= label_tag :category, 'Please enter your category:'%>
-        <%= text_field_tag :category %>
-      </div> 
-      <div class="btn btn-default">
-        <%= submit_tag 'Submit' %>
-      </div>
-    <% end %>  
-    
+  
+   <%= form_tag "/itineraries", method: :post do %>
+  <div>
+   <%= label_tag :title, 'Please name your itinerary' %>
+    <%= text_field_tag :title %>
+  </div>
+  <div class="btn btn-default">
+    <%= submit_tag 'Get Started!' %>
+  </div>
+<% end %>
     
 
-, display of restaurants whose itinerary id = this venue's 
-itinerary id  link to remove from itinerary -->
+
 
     <!-- KEY FEATURES
     ============================== -->

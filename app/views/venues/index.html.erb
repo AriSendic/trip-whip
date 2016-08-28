@@ -6,7 +6,7 @@
   <h4>formatted_address: <%= venue.formatted_address %></h4>
   <h4>rating: <%= venue.rating %></h4>
   <h4>price_level: <%= venue.price_level %></h4>
-  <%= form_tag '/venues/show', method: :post do %>
+  <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.place_id}", method: :get do %>
     <%= hidden_field_tag :venue_id, venue.place_id %> 
     <%= submit_tag "More info" %>
   <%end%>

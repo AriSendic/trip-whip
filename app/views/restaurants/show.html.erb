@@ -5,7 +5,7 @@
 <h4><%= @data["result"]["geometry"]["location"]["lng"] %></h4>
 <%= @data["result"]["place_id"]%>
 
-<%= form_tag "/itinerary", method: :patch do %>
+<%= form_tag "/itineraries/#{@itinerary.id}/restaurants", method: :post do %>
   <div>
     <%= hidden_field_tag :api_id, @data["result"]["place_id"] %>
     <%= hidden_field_tag :name, @data["result"]["name"] %>
@@ -13,8 +13,7 @@
     <%= hidden_field_tag :lng, @data["result"]["geometry"]["location"]["lng"] %>
     <%= hidden_field_tag :address, @data["result"]["formatted_address"] %>
     <%= hidden_field_tag :phone, @data["result"]["formatted_phone_number"] %>
-    <%= label_tag :itinerary_id, 'Please enter the itinerary_id:' %>
-    <%= text_field_tag :itinerary_id %>
+    <%= hidden_field_tag :itinerary_id, @itinerary.id %>
   </div>
   <div class="btn btn-default">
     <%= submit_tag 'Add to itinerary!' %>

@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
     lat = params[:lat]
     lng = params[:lng]
     type = params[:type]
-
+    @itinerary = Itinerary.find_by(id: params[:itinerary_id])
     # @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
     # @data = @client.spots_by_query(type.to_s, :types => 'restaurant', :exclude => ['night_club', 'bar'], :location => {lat}, #{lng}", :radius => "10000")
     # render json: @data
@@ -13,6 +13,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant_id = params[:restaurant_id]
+    @itinerary = Itinerary.find_by(id: params[:itinerary_id])
     @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@restaurant_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
   end 
 
@@ -27,6 +28,6 @@ class RestaurantsController < ApplicationController
       itinerary_id: params[:itinerary_id]
     )
     @restaurant.save
-    redirect_to "/itinerary/#{@restaurant.itinerary_id}" 
+    redirect_to "/itineraries/#{@restaurant.itinerary_id}" 
   end 
 end
