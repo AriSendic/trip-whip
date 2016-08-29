@@ -1,13 +1,13 @@
-<h1><%= @data["result"]["name"] %></h1>
-<h2><%= @data["result"]["formatted_address"] %></h2>
-<h2><%= @data["result"]["formatted_phone_number"] %></h2>
+<h2><%= @data["result"]["name"] %></h2>
+<h4><%= @data["result"]["formatted_address"] %></h4>
+<h4><%= @data["result"]["formatted_phone_number"] %></h4>
 <% if @data["result"]["opening_hours"] %>
-  <h3>Hours: <%= @data["result"]["opening_hours"]["weekday_text"]%></h3>
+  <h4>Hours: <% @data["result"]["opening_hours"]["weekday_text"].each do |day|%></h4>
+    <p><%= day %></p>
+  <% end %> 
 <% end %>
-<h4><%= @data["result"]["geometry"]["location"]["lat"] %></h4>
-<h4><%= @data["result"]["geometry"]["location"]["lng"] %></h4>
-<%= @data["result"]["place_id"]%>
 
+  
 <%= form_tag "/itineraries/#{@itinerary.id}/restaurants", method: :post do %>
   <div>
     <%= hidden_field_tag :api_id, @data["result"]["place_id"] %>
