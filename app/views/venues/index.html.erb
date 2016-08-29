@@ -1,14 +1,28 @@
-<% @data.each do|venue| %>
-
-  <h4>lat: <%= venue.lat %></h4>
-  <h4>lng: <%= venue.lng%></h4>
-  <h4>name: <%= venue.name %></h4>
-  <h4>formatted_address: <%= venue.formatted_address %></h4>
-  <h4>rating: <%= venue.rating %></h4>
-  <h4>price_level: <%= venue.price_level %></h4>
-  <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.place_id}", method: :get do %>
-    <%= hidden_field_tag :venue_id, venue.place_id %> 
-    <%= submit_tag "More info" %>
-  <%end%>
-  <p>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</p>
-<%end%>
+<div class="page__header">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header__title">Search Results</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-md-9">
+      <div class="list-group">
+        <% @data.each do|venue| %>
+          <div class="list-group-item">
+            <h3><%= venue.name %></h3>
+            <h4><%= venue.formatted_address %></h4>
+            <h4>rating: <%= venue.rating %></h4>
+            <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.place_id}", method: :get do %>
+              <%= hidden_field_tag :venue_id, venue.place_id %> 
+              <%= submit_tag "More info" %>
+            <%end%>
+          </div>
+        <%end%>
+      </div>
+    </div>
+  </div> 
+</div>     
