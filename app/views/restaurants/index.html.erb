@@ -1,13 +1,27 @@
-<% @data["results"].each do |restaurant| %>
-  <h4>lat: <%= restaurant["geometry"]["location"]["lat"] %></h4>
-  <h4>lat: <%= restaurant["geometry"]["location"]["lng"] %></h4>
-  <h4>Name: <%= restaurant["name"]%></h4>
-  <h4>formatted_address: <%= restaurant["formatted_address"] %></h4>
-  <h4>Rating: <%= restaurant["rating"]%></h4>
-  <h4>price_level: <%= restaurant["price_level"]%></h4>
-  <%= form_tag "/itineraries/#{@itinerary.id}/restaurants/#{restaurant["place_id"]}", method: :get do %>
-    <%= hidden_field_tag :restaurant_id, restaurant["place_id"] %> 
-    <%= submit_tag "More info" %>
-  <p>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _</p>
-  <% end %>
-<% end %> 
+<div class="page__header">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h3 class="page-header__title">Restaurant Search Results</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-md-9">
+      <div class="list-group">
+        <% @data["results"].each do |restaurant| %>
+          <h3><%= restaurant["name"]%></h3>
+          <h4><%= restaurant["formatted_address"] %></h4>
+          <h4>Rating: <%= restaurant["rating"]%></h4>
+          <h4>Price_level: <%= restaurant["price_level"]%></h4>
+          <%= form_tag "/itineraries/#{@itinerary.id}/restaurants/#{restaurant["place_id"]}", method: :get do %>
+            <%= hidden_field_tag :restaurant_id, restaurant["place_id"] %> 
+            <%= submit_tag "More info" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div> 
+  </div>
+</div>        
