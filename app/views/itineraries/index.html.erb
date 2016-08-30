@@ -41,7 +41,7 @@
 
     <h3>Your recent trips: </h3>
     <% @itineraries.each do |itinerary| %>
-      <h3><a href="/itinerary/<%=itinerary.id%>"><%= itinerary.title %></a></h3>
+      <h3><a href="/itineraries/<%=itinerary.id%>"><%= itinerary.title %></a></h3>
       <%= itinerary.friendly_time %> 
       <% itinerary.venues.each do |venue| %>
          <p><%= venue.name %></p>
