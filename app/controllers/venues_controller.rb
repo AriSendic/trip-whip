@@ -29,7 +29,6 @@ class VenuesController < ApplicationController
     )
     if @venue.save
       redirect_to "/itineraries/#{@venue.itinerary_id}"
-      puts "Saved Venue"
     else 
       render :show
     end 
@@ -39,5 +38,11 @@ class VenuesController < ApplicationController
     @venue_id = params[:venue_id]
     @itinerary = Itinerary.find_by(id: params[:itinerary_id])
     @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@venue_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
-  end  
+  end
+
+  # def destroy
+  #   @venue = Venue.find_by(id: params[:id])
+  #   @venue.destroy
+  #   render :show
+  # end  
 end

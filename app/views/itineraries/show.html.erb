@@ -1,6 +1,7 @@
 <!-- show venues, restaurants and projects with the itinerary id  (in sort order)
 venues with name and address   restaurant with name and address,  project name and materials  -->
-<h2><%= @itinerary.title %></h2>
+<div ng-app="app">
+</div>
 <% if @itinerary.venues.count == 0 %>
   <h2>Start with a venue: </h2>  
   <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
@@ -22,7 +23,6 @@ venues with name and address   restaurant with name and address,  project name a
   <h2>Venue: <%= venue.name %></h2>
   <h3>Address: <%= venue.address %></h3>
   <h3>Phone: <%= venue.phone %></h3>
-  
   <h5>add a nearby restaurant</h5>
   <%= form_tag "/itineraries/#{@itinerary.id}/restaurants", method: :get do %>
     <div class="form-group">
