@@ -1,10 +1,19 @@
 class VenuesController < ApplicationController
   def index
+    lat = params[:lat]
+    lng = params[:lng]
     city = params[:city]
     category = params[:category]
     @itinerary = Itinerary.find_by(id: params[:itinerary_id])
-    @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
-    @data = @client.spots_by_query("#{category} near #{city}")
+    # @client = GooglePlaces::Client.new(ENV['GOOGLE_PLACES_KEY'])
+    # @data = @client.spots_by_query("#{category} near #{city}")
+    if params[:city].present?
+      @data = Unirest.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{category}+in+#{city}&key=#{ENV['GOOGLE_PLACES_KEY']}").body  
+    else
+      @data = Unirest.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{category}&key=#{ENV['GOOGLE_PLACES_KEY']}&location=#{lat},#{lng}&rankby=distance").body
+    end    
+    
+  
   end
     
   

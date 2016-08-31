@@ -8222,7 +8222,7 @@ footer {
 .hero__h1,
 .hero__h2,
 .hero__intro {
-  color: white;
+  color: red;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 .hero__h1 {
@@ -8329,13 +8329,13 @@ footer {
   background: no-repeat center center / cover;
 }
 #hero-carousel__item_1 {
-  background-image: url(/img/bg_1.jpg);
+  background-image: url(/img/Children-smartphone-tablet-screens.jpg);
 }
 #hero-carousel__item_2 {
-  background-image: url(/img/bg_2.jpg);
+  background-image: url(/img/Kids-in-front-of-tv.jpg);
 }
 #hero-carousel__item_3 {
-  background-image: url(/img/bg_3.jpg);
+  background-image: url(/img/seaside2015_44.jpg);
 }
 /* -------------------- *\
     #KEY FEATURES

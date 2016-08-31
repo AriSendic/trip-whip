@@ -11,18 +11,18 @@
   <div class="row">
     <div class="col-sm-8 col-md-9">
       <div class="list-group">
-        <% @data.each do|venue| %>
+        <% @data["results"].each do |venue| %>
           <div class="list-group-item">
-            <h3><%= venue.name %></h3>
-            <h4><%= venue.formatted_address %></h4>
-            <h4>rating: <%= venue.rating %></h4>
-            <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.place_id}", method: :get do %>
-              <%= hidden_field_tag :venue_id, venue.place_id %> 
+            <h3><%= venue["name"]%></h3>
+            <h4><%= venue["formatted_address"] %></h4>
+            <h4>Rating: <%= venue["rating"]%></h4>
+            <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue["place_id"]}", method: :get do %>
+              <%= hidden_field_tag :venue_id, venue["place_id"] %> 
               <%= submit_tag "More info" %>
-            <%end%>
-          </div>
-        <%end%>
+            <% end %>
+          </div>  
+        <% end %>
       </div>
-    </div>
-  </div> 
-</div>     
+    </div> 
+  </div>
+</div>        

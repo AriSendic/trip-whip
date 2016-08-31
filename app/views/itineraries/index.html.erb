@@ -1,42 +1,98 @@
-  <!-- HERO BLOCK
+   <!-- HERO BLOCK
     ============================== -->
-    <div class="hero hero__bs">
+    <div class="hero">
       <div class="hero__inner">
-        <div class="wrapper">
-          <div class="wrapper__inner">
-            <div class="container">
-              <div class="row" id="hero__content">
-                <div class="col-sm-12 text-center">
-                  <h1 class="hero__h1">Create Beautiful Websites</h1>
-                  <h2 class="hero__h2">Easily With Beatrix</h2>
-                  <p class="hero__intro">
-                    Multipurpose responsive template powered by Bootstrap
-                  </p>
-                  <div class="hero__action">
-                    <a href="#" class="btn btn-lg btn-primary">Purchase now</a>
-                  </div>
-                </div>
-              </div> <!-- / .row -->
-            </div> <!-- / .container -->
-          </div> <!-- / .wrapper__inner -->
-        </div> <!-- / .wrapper -->
-      </div> <!-- / .hero__inner -->
 
-      <!-- Backstretch controls -->
-      <div class="hero__ctrl js-hero-bs__ctrl">
-        <a href="#hero__carousel" role="button" data-slide="prev">
-          <i class="fa fa-step-backward"></i>
-        </a>
-        <a href="#" data-slide="pause" class="visible-inline-block playback">
-          <i class="fa fa-pause"></i>
-        </a>
-        <a href="#" data-slide="resume" class="playback hidden">
-          <i class="fa fa-play"></i>
-        </a>
-        <a href="#hero__carousel" role="button" data-slide="next">
-          <i class="fa fa-step-forward"></i>
-        </a>
-      </div> <!-- / .hero__ctrl -->
+        <!-- Carousel -->
+        <div id="hero__carousel" class="carousel slide" data-ride="carousel" data-pause="false">
+          <div class="carousel-inner" role="listbox">
+
+            <!-- 1st Slide -->
+            <div class="item active" id="hero-carousel__item_1">
+              <div class="wrapper">
+                <div class="wrapper__inner">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-12 text-center">
+                        <h1 class="hero__h1">Kids on vacation?</h1>
+                        <!-- <h2 class="hero__h2">Kids on vacation?</h2> -->
+                       <!--  <p class="hero__intro">
+                          Multipurpose responsive template powered by Bootstrap
+                        </p> -->
+                        <!-- <div class="hero__action">
+                          <a href="#" class="btn btn-lg btn-primary">Purchase now</a>
+                        </div> -->
+                      </div>
+                    </div> <!-- / .row -->
+                  </div> <!-- / .container -->
+                </div> <!-- / .wrapper__inner -->
+              </div> <!-- / .wrapper -->
+            </div> <!-- / .item -->
+
+            <!-- 2nd Slide -->
+            <div class="item" id="hero-carousel__item_2">
+              <div class="wrapper">
+                <div class="wrapper__inner">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-12 text-center">
+                        <h1 class="hero__h1">Want them away from the screen?</h1>
+                       <!--  <h2 class="hero__h2">Want them away from the screen?</h2> -->
+                        <!-- <p class="hero__intro">
+                          Build upon existing templates or create new pages with custom UI elements
+                        </p> -->
+                        <!-- <div class="hero__action">
+                          <a href="#" class="btn btn-lg btn-primary">Purchase now</a>
+                        </div> -->
+                      </div>
+                    </div> <!-- / .row -->
+                  </div> <!-- / .container -->
+                </div> <!-- / .wrapper__inner -->
+              </div> <!-- / .wrapper -->
+            </div> <!-- / .item -->
+
+            <!-- 3d Slide -->
+            <div class="item" id="hero-carousel__item_3">
+              <div class="wrapper">
+                <div class="wrapper__inner">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-12 text-center">
+                        <h1 class="hero__h1">TripWhip</h1>
+                        <!-- <h2 class="hero__h2">For All Types of Licenses</h2>
+                        <p class="hero__intro">
+                          Feel free to contact us via e-mail or comments tab
+                        </p>
+                        <div class="hero__action">
+                          <a href="#" class="btn btn-lg btn-primary">Purchase now</a>
+                        </div> -->
+                      </div>
+                    </div> <!-- / .row -->
+                  </div> <!-- / .container -->
+                </div> <!-- / .wrapper__inner -->
+              </div> <!-- / .wrapper -->
+            </div> <!-- / .item -->
+
+          </div> <!-- . carousel-inner -->
+
+          <!-- Carousel controls -->
+          <div class="hero__ctrl js-hero-crsl__ctrl">
+            <a href="#hero__carousel" role="button" data-slide="prev">
+              <i class="fa fa-step-backward"></i>
+            </a>
+            <a href="#" data-slide="pause" class="playback visible-inline-block">
+              <i class="fa fa-pause"></i>
+            </a>
+            <a href="#" data-slide="cycle" class="playback hidden">
+              <i class="fa fa-play"></i>
+            </a>
+            <a href="#hero__carousel" role="button" data-slide="next">
+              <i class="fa fa-step-forward"></i>
+            </a>
+          </div> <!-- / .hero__ctrl -->
+
+        </div> <!-- / .carousel-->
+      </div> <!-- / .hero__inner -->
     </div> <!-- / .hero -->
 
     <h3>Your recent trips: </h3>
