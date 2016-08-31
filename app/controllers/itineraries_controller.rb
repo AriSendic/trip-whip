@@ -2,7 +2,7 @@ class ItinerariesController < ApplicationController
   require 'yelp'
   require 'unirest'
   def index
-    @itineraries = Itinerary.where("user_id=?", current_user.id).limit(3)
+    @itineraries = Itinerary.last(3).reverse
   end 
   
   def new
