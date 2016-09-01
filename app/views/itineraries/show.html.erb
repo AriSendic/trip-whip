@@ -60,6 +60,7 @@ venues with name and address   restaurant with name and address,  project name a
     <h3>Restaurant: <%= restaurant.name %></h3>
     <h4>Address: <%= restaurant.address %></h4>
     <h4>Phone: <%= restaurant.phone %></h4>
+    <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/restaurants/#{restaurant.id}", method: :delete %>
     <h4>--add a nearby venue</h4>
     <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
       <div class="form-group">

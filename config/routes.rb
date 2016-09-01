@@ -11,12 +11,11 @@ Rails.application.routes.draw do
   post '/itineraries/:itinerary_id/venues' => 'venues#create'
   get '/itineraries/:itinerary_id/venues/:place_id' => 'venues#show'
   delete '/itineraries/:itinerary_id/venues/:venue_id' => 'venues#destroy'
-  # post '/itinerary/' => 'venues#create'
-  # post '/restaurants' => 'restaurants#index'
+ 
   get '/itineraries/:itinerary_id/restaurants' => 'restaurants#index'
-  # get '/restaurants' => 'restaurants#index'
+ 
   get '/itineraries/:itinerary_id/restaurants/:place_id' => 'restaurants#show'
-
+  delete '/itineraries/:itinerary_id/restaurants/:restaurant_id' => 'restaurants#destroy'
   post '/itineraries/:itinerary_id/restaurants' => 'restaurants#create'
   get '/signup' => 'users#new'
   post '/users' => 'users#create'   

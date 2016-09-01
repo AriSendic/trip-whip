@@ -30,4 +30,10 @@ class RestaurantsController < ApplicationController
     @restaurant.save
     redirect_to "/itineraries/#{@restaurant.itinerary_id}" 
   end 
+  def destroy
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+    @restaurant.destroy
+
+    redirect_to "/itineraries/#{params[:itinerary_id]}"
+  end  
 end
