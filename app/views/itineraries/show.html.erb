@@ -1,6 +1,7 @@
 <!-- show venues, restaurants and projects with the itinerary id  (in sort order)
 venues with name and address   restaurant with name and address,  project name and materials  -->
-<% if @itinerary.venues.count == 0 %>
+<h1><%=@itinerary.title%></h1>
+<% if @itinerary.venues.count == 0 && @itinerary.restaurants.count == 0%>
   <h2>Start with a venue: </h2>  
   <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
     <div class="form-group">
@@ -16,7 +17,7 @@ venues with name and address   restaurant with name and address,  project name a
     </div>
   <% end %>  
 <% end %>
-<% if @itinerary.venues.count > 0 %>
+<% if @itinerary.venues.count > 0 || @itinerary.restaurants.count > 0%>
   <% @itinerary.venues.each do |venue| %>
     <h2>Venue: <%= venue.name %></h2>
     <h3>Address: <%= venue.address %></h3>
