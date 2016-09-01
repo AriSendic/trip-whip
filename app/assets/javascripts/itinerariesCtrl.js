@@ -3,7 +3,7 @@
   "use strict";
 
   angular.module("app").controller("itinerariesCtrl", function($scope) {
-    
+    $
     
     window.$scope = $scope;
     

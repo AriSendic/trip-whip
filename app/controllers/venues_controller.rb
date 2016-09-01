@@ -40,9 +40,10 @@ class VenuesController < ApplicationController
     @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@venue_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
   end
 
-  # def destroy
-  #   @venue = Venue.find_by(id: params[:id])
-  #   @venue.destroy
-  #   render :show
-  # end  
+  def destroy
+    @venue = Venue.find_by(id: params[:venue_id])
+    @venue.destroy
+
+    redirect_to "/itineraries/#{params[:itinerary_id]}"
+  end  
 end

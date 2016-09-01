@@ -32,7 +32,10 @@ class ItinerariesController < ApplicationController
   end
   
   def update
-
+   
   end  
-
+  # def complete
+  #   @itinerary = Itinerary.find_by(id: params[:id])
+  #   @itineray.pending = false
+  # end  
 end
