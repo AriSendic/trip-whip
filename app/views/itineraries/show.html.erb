@@ -19,14 +19,14 @@ venues with name and address   restaurant with name and address,  project name a
 <% end %>
 <% if @itinerary.venues.count > 0 || @itinerary.restaurants.count > 0%>
   <% @itinerary.venues.each do |venue| %>
-    <h2>Venue: <%= venue.name %></h2>
-    <h3>Address: <%= venue.address %></h3>
-    <h3>Phone: <%= venue.phone %></h3>
+    <h3>Venue: <%= venue.name %></h3>
+    <h4>Address: <%= venue.address %></h4>
+    <h4>Phone: <%= venue.phone %></h4>
     <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :delete %>
     <table>
       <tr>
-        <td><h4>add a nearby restaurant</h4></td>
-        <td><h4>add a nearby venue</h4></td>
+        <td><h4>--add a nearby restaurant</h4></td>
+        <td><h4>--add a nearby venue</h4></td>
       </tr>
       <tr>
         <td>
@@ -57,9 +57,19 @@ venues with name and address   restaurant with name and address,  project name a
   <% end %>
     
   <% @itinerary.restaurants.each do |restaurant| %>
-    <p>Restaurant: <%= restaurant.name %></p>
-    <p>Address: <%= restaurant.address %></p>
-    <p>Phone: <%= restaurant.phone %>
+    <h3>Restaurant: <%= restaurant.name %></h3>
+    <h4>Address: <%= restaurant.address %></h4>
+    <h4>Phone: <%= restaurant.phone %></h4>
+    <h4>--add a nearby venue</h4>
+    <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
+      <div class="form-group">
+        <%= label_tag :category, 'What category?'%>
+        <%= text_field_tag :category %>
+        <%= hidden_field_tag :lat, restaurant.lat %>
+        <%= hidden_field_tag :lng, restaurant.lng %>
+        <%= submit_tag "Submit" %>
+      </div>  
+    <% end %>
   <% end %>
   <% @itinerary.projects.each do |project| %>
     <p>Project: <%= project.name %></p>
