@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post '/itineraries' => 'itineraries#create'
   # get '/itinerary' => 'itineraries#new'
   get '/itineraries/:id' => 'itineraries#show'
-  # get '/itinerary/:id/edit' => 'itineraries#edit'
+  get '/itineraries/:id/edit' => 'itineraries#edit'
   # patch '/itinerary/:id' => 'itineraries#update'
   # post '/itineraries/:itinerary_id/venues' => 'venues#index'
   get '/itineraries/:itinerary_id/venues' => 'venues#index'

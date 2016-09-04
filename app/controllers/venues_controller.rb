@@ -45,6 +45,6 @@ class VenuesController < ApplicationController
     @venue = Venue.find_by(id: params[:venue_id])
     @venue.destroy
 
-    redirect_to "/itineraries/#{params[:itinerary_id]}"
+    redirect_to "/itineraries/#{params[:itinerary_id]}/edit"
   end  
 end

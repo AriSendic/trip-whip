@@ -28,7 +28,7 @@ class RestaurantsController < ApplicationController
       itinerary_id: params[:itinerary_id]
     )
     @restaurant.save
-    redirect_to "/itineraries/#{@restaurant.itinerary_id}" 
+    redirect_to "/itineraries/#{@restaurant.itinerary_id}/edit" 
   end 
   
   def destroy

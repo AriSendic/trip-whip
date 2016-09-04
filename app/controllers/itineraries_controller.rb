@@ -21,12 +21,12 @@ class ItinerariesController < ApplicationController
   
 
   def show
-    @itinerary = Itinerary.find_by(id: params[:id])
+    
   
   end
 
   def edit
-   
+    @itinerary = Itinerary.find_by(id: params[:id])
     
     
     
@@ -35,8 +35,5 @@ class ItinerariesController < ApplicationController
   def update
    
   end  
-  # def complete
-  #   @itinerary = Itinerary.find_by(id: params[:id])
-  #   @itineray.pending = false
-  # end  
+  
 end
