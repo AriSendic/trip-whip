@@ -38,6 +38,8 @@ class VenuesController < ApplicationController
     @venue_id = params[:venue_id]
     @itinerary = Itinerary.find_by(id: params[:itinerary_id])
     @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@venue_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
+   
+    # @photo = Unirest.get("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@data['result']['photos'][0]['photo_reference']}&key=#{ENV['GOOGLE_PLACES_KEY']}")
   end
 
   def destroy

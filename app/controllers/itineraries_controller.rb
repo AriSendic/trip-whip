@@ -22,6 +22,7 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find_by(id: params[:id])
+  
   end
 
   def edit
