@@ -1,24 +1,29 @@
-<h2><%= @data["result"]["name"] %></h2>
-<h4><%= @data["result"]["formatted_address"] %></h4>
-<h4><%= @data["result"]["formatted_phone_number"] %></h4>
-<% if @data["result"]["opening_hours"] %>
-  <h4>Hours: <% @data["result"]["opening_hours"]["weekday_text"].each do |day|%></h4>
-    <p><%= day %></p>
-  <% end %> 
-<% end %>
+<body>
+  <div class="container">
+    <h2><%= @data["result"]["name"] %></h2>
+    <h4><%= @data["result"]["formatted_address"] %></h4>
+    <h4><%= @data["result"]["formatted_phone_number"] %></h4>
+    <% if @data["result"]["opening_hours"] %>
+      <h4>Hours: <% @data["result"]["opening_hours"]["weekday_text"].each do |day|%></h4>
+        <p><%= day %></p>
+      <% end %> 
+    <% end %>
 
-  
-<%= form_tag "/itineraries/#{@itinerary.id}/restaurants", method: :post do %>
-  <div>
-    <%= hidden_field_tag :api_id, @data["result"]["place_id"] %>
-    <%= hidden_field_tag :name, @data["result"]["name"] %>
-    <%= hidden_field_tag :lat, @data["result"]["geometry"]["location"]["lat"] %>
-    <%= hidden_field_tag :lng, @data["result"]["geometry"]["location"]["lng"] %>
-    <%= hidden_field_tag :address, @data["result"]["formatted_address"] %>
-    <%= hidden_field_tag :phone, @data["result"]["formatted_phone_number"] %>
-    <%= hidden_field_tag :itinerary_id, @itinerary.id %>
+    <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=@data['result']['photos'][0]['photo_reference']%>&key=<%=ENV['GOOGLE_PLACES_KEY']%>">
+    <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue|<%=@data["result"]["geometry"]["location"]["lat"]%>,<%=@data["result"]["geometry"]["location"]["lng"]%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
+    <%= form_tag "/itineraries/#{@itinerary.id}/restaurants", method: :post do %>
+      <div>
+        <%= hidden_field_tag :api_id, @data["result"]["place_id"] %>
+        <%= hidden_field_tag :name, @data["result"]["name"] %>
+        <%= hidden_field_tag :lat, @data["result"]["geometry"]["location"]["lat"] %>
+        <%= hidden_field_tag :lng, @data["result"]["geometry"]["location"]["lng"] %>
+        <%= hidden_field_tag :address, @data["result"]["formatted_address"] %>
+        <%= hidden_field_tag :phone, @data["result"]["formatted_phone_number"] %>
+        <%= hidden_field_tag :itinerary_id, @itinerary.id %>
+      </div>
+      <div class="btn btn-default">
+        <%= submit_tag 'Add to itinerary!' %>
+      </div>
+    <% end %>
   </div>
-  <div class="btn btn-default">
-    <%= submit_tag 'Add to itinerary!' %>
-  </div>
-<% end %>
+</body>
