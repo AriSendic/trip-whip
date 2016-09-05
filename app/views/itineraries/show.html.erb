@@ -1,78 +1,39 @@
 <!-- show venues, restaurants and projects with the itinerary id  (in sort order)
 venues with name and address   restaurant with name and address,  project name and materials  -->
 <h1><%=@itinerary.title%></h1>
-<% if @itinerary.venues.count == 0 && @itinerary.restaurants.count == 0%>
-  <h2>Start with a venue: </h2>  
-  <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
-    <div class="form-group">
-      <%= label_tag :city, 'Please enter your city:'%>
-      <%= text_field_tag :city %>
-    </div>
-    <div class="form-group">
-      <%= label_tag :category, 'Please enter your category:'%>
-      <%= text_field_tag :category %>
-    </div> 
-    <div class="btn btn-default">
-      <%= submit_tag 'Submit' %>
-    </div>
-  <% end %>  
-<% end %>
-<% if @itinerary.venues.count > 0 || @itinerary.restaurants.count > 0%>
+
+
   <% @itinerary.venues.each do |venue| %>
     <h3>Venue: <%= venue.name %></h3>
     <h4>Address: <%= venue.address %></h4>
     <h4>Phone: <%= venue.phone %></h4>
-    <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :delete %>
-    <table>
-      <tr>
-        <td><h4>--add a nearby restaurant</h4></td>
-        <td><h4>--add a nearby venue</h4></td>
-      </tr>
-      <tr>
-        <td>
-          <%= form_tag "/itineraries/#{@itinerary.id}/restaurants", method: :get do %>
-            <div class="form-group">
-              <%= label_tag :type, 'What kind of restaurant?'%>
-              <%= text_field_tag :type %>
-              <%= hidden_field_tag :lat, venue.lat %>
-              <%= hidden_field_tag :lng, venue.lng %>
-              <%= submit_tag "Submit" %>
-            </div>  
-          <% end %>
-        </td>
-        <td>
-          <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
-            <div class="form-group">
-              <%= label_tag :category, 'What category?'%>
-              <%= text_field_tag :category %>
-              <%= hidden_field_tag :lat, venue.lat %>
-              <%= hidden_field_tag :lng, venue.lng %>
-              <%= submit_tag "Submit" %>
-            </div>  
-          <% end %>
-        </td>
-      </tr>
-    </table>  
-   
-  <% end %>
+    <h3> Leave a TripTip!</h3>
+    <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :patch do %> 
+      <div>
+        <%= label_tag :text %>
+        <%= text_area_tag :text %>
+      </div>
+      <%= hidden_field_tag :user_id, current_user.id %>
+      <%= hidden_field_tag :api_id, venue.api_id %>
+       <h5>How many hours should I give it?</h5>
+      <% label_tag :time %>
+      
+      <select>
+        <% @times.each do |time|%>
+          <option value=<%=time%>><%=time%></option>
+        <% end %>
+      </select> 
+      <%= submit_tag 'Submit'%>
+    <% end %>
+  <% end %>    
+ 
     
   <% @itinerary.restaurants.each do |restaurant| %>
     <h3>Restaurant: <%= restaurant.name %></h3>
     <h4>Address: <%= restaurant.address %></h4>
     <h4>Phone: <%= restaurant.phone %></h4>
-    <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/restaurants/#{restaurant.id}", method: :delete %>
-    <h4>--add a nearby venue</h4>
-    <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
-      <div class="form-group">
-        <%= label_tag :category, 'What category?'%>
-        <%= text_field_tag :category %>
-        <%= hidden_field_tag :lat, restaurant.lat %>
-        <%= hidden_field_tag :lng, restaurant.lng %>
-        <%= submit_tag "Submit" %>
-      </div>  
-    <% end %>
-  <% end %>
-  
+    
+
  <!--  <% @itinerary.projects.each do |project| %>
     <p>Project: <%= project.name %></p>
   <% end %> -->

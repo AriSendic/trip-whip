@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160831160524) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "title"
-    t.boolean  "pending",    default: true
+    t.boolean  "pending", default: true
   end
 
   create_table "posts", force: :cascade do |t|

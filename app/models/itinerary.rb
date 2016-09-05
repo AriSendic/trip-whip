@@ -3,8 +3,9 @@ class Itinerary < ActiveRecord::Base
   has_many :projects
   has_many :venues
   has_many :restaurants
-
+ 
   def friendly_time
     created_at.strftime('%A, %b %d')
   end
 end
+
