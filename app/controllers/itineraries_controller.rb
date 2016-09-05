@@ -23,6 +23,7 @@ class ItinerariesController < ApplicationController
   def show
     @itinerary = Itinerary.find_by(id: params[:id])
     @times = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6]
+
   end
 
   def edit
@@ -37,6 +38,12 @@ class ItinerariesController < ApplicationController
     @itinerary.pending = false
     @itinerary.save
     redirect_to "/itineraries/#{@itinerary.id}"
-  end  
+  end
   
+  def destroy  
+    @itinerary = Itinerary.find_by(id: params[:id])
+    @itinerary.pending = true
+    @itinerary.save
+    redirect_to "/itineraries/#{@itinerary.id}/edit"
+  end
 end
