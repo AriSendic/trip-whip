@@ -98,7 +98,7 @@
       <div class="row">
         <h3>Your recent trips: </h3>
         <% @itineraries.last(3).reverse.each do |itinerary| %>
-          <% if itinerary.pending=false %>
+          <% if itinerary.pending == false %>
             <h3><a href="/itineraries/<%=itinerary.id%>"><%= itinerary.title %></a></h3>
           <% else %>
             <h3><a href="/itineraries/<%=itinerary.id%>/edit"><%= itinerary.title %></a></h3>

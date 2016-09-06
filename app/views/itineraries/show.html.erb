@@ -17,8 +17,8 @@
       <h3>Venue: <%= venue.name %></h3>
       <h4>Address: <%= venue.address %></h4>
       <h4>Phone: <%= venue.phone %></h4> 
-      <% @posts = Post.where("user_id = ? and api_id = ?", current_user.id, venue.api_id )#to_a%>
-      <% if @posts = nil %>
+      <% @posts = Post.where("user_id = ? AND api_id = ?", current_user.id, venue.api_id )%>
+      <% unless @posts.length > 0 %>
         <h3> Leave a TripTip!</h3>
         <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :patch do %> 
           <div>
@@ -34,7 +34,8 @@
           <% end %>   
           <%= submit_tag 'Submit'%>
         <% end %>
-       
+      <% else %>
+      <%= @posts.first.text %>
       <%end%> 
     <% end %>    
      
