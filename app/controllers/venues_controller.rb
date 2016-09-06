@@ -28,7 +28,7 @@ class VenuesController < ApplicationController
       itinerary_id: params[:itinerary_id]
     )
     if @venue.save
-      redirect_to "/itineraries/#{@venue.itinerary_id}"
+      redirect_to "/itineraries/#{@venue.itinerary_id}/edit"
     else 
       render :show
     end 
@@ -36,6 +36,7 @@ class VenuesController < ApplicationController
 
   def show
     @venue_id = params[:venue_id]
+    @posts = Post.where(api_id: @venue_id) 
     @itinerary = Itinerary.find_by(id: params[:itinerary_id])
     @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@venue_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
    

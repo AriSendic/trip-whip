@@ -1,42 +1,52 @@
-<!-- show venues, restaurants and projects with the itinerary id  (in sort order)
-venues with name and address   restaurant with name and address,  project name and materials  -->
-
-<h1><%=@itinerary.title%></h1>
-<% @itinerary.venues.each do |venue| %>
-  <h3>Venue: <%= venue.name %></h3>
-  <h4>Address: <%= venue.address %></h4>
-  <h4>Phone: <%= venue.phone %></h4> 
-  <% @posts = Post.where("user_id = ? and api_id = ?", current_user.id, venue.api_id )%>
-  <%=@posts.first.text%>
-  <% if @posts = nil%>
-    <h3> Leave a TripTip!</h3>
-    <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :patch do %> 
-      <div>
-        <%= label_tag :text %>
-        <%= text_area_tag :text %>
+<div class="container">
+  <div class="row">
+    <h3>Five day forecast for <%=@city%> <%=@state%>:</h3>
+      <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
+      <div class="col-md-2">
+        <h3><%= day["day"]%></h3>
+        <h4>High: <%= day["high"]%></h4>
+        <h4>Low: <%= day["low"]%></h4>
       </div>
-      <%= hidden_field_tag :user_id, current_user.id %>
-      <%= hidden_field_tag :api_id, venue.api_id %>
-       <h5>How many hours should I give it?</h5>
-      <% label_tag :time %>
-      
-      <select>
-        <% @times.each do |time| %>
-          <option value=<%=time%>><%=time%></option>
+    <%end%>
+ </div>
+</div>    
+<div class="container">
+  <div class="row">    
+    <h1><%=@itinerary.title%></h1>
+    <% @itinerary.venues.each do |venue| %>
+      <h3>Venue: <%= venue.name %></h3>
+      <h4>Address: <%= venue.address %></h4>
+      <h4>Phone: <%= venue.phone %></h4> 
+      <% @posts = Post.where("user_id = ? and api_id = ?", current_user.id, venue.api_id )#to_a%>
+      <% if @posts = nil %>
+        <h3> Leave a TripTip!</h3>
+        <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :patch do %> 
+          <div>
+            <%= label_tag :text %>
+            <%= text_area_tag :text %>
+          </div>
+          <%= hidden_field_tag :user_id, current_user.id %>
+          <%= hidden_field_tag :api_id, venue.api_id %>
+          <h5>How many hours should I give it?</h5>
+          <select name="time">
+          <% @times.each do |time| %>
+                  <option value=<%=time%>><%=time%></option>
+          <% end %>   
+          <%= submit_tag 'Submit'%>
         <% end %>
-      </select> 
-      <%= submit_tag 'Submit'%>
+       
+      <%end%> 
+    <% end %>    
+     
+        
+    <% @itinerary.restaurants.each do |restaurant| %>
+      <h3>Restaurant: <%= restaurant.name %></h3>
+      <h4>Address: <%= restaurant.address %></h4>
+      <h4>Phone: <%= restaurant.phone %></h4>
+    <% end %>    
+    <%= form_tag "/itineraries/#{@itinerary.id}", method: :delete do %>
+      <%= submit_tag "Edit some more" %>
     <% end %>
-  <% end%>
-<% end %>    
- 
-    
-<% @itinerary.restaurants.each do |restaurant| %>
-  <h3>Restaurant: <%= restaurant.name %></h3>
-  <h4>Address: <%= restaurant.address %></h4>
-  <h4>Phone: <%= restaurant.phone %></h4>
-<% end %>    
-<%= form_tag "/itineraries/#{@itinerary.id}", method: :delete do %>
-  <%= submit_tag "Edit some more" %>
-  <% end %>
+  </div>
+</div>    
 

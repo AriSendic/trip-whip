@@ -11,7 +11,7 @@
     <% if @data['result']['photos'] %>
     <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=@data['result']['photos'][0]['photo_reference']%>&key=<%=ENV['GOOGLE_PLACES_KEY']%>">
     <% end %>
-    <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue|<%=@data["result"]["geometry"]["location"]["lat"]%>,<%=@data["result"]["geometry"]["location"]["lng"]%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
+    <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue|<%=@data["result"]["geometry"]["location"]["lat"]%>,<%=@data["result"]["geometry"]["location"]["lng"]%>&size=400x400&zoom=16&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
     <%= form_tag url, method: :post do %>
       <div>
         <%= hidden_field_tag :api_id, @data["result"]["place_id"] %>

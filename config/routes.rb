@@ -6,14 +6,11 @@ Rails.application.routes.draw do
   get '/itineraries/:id/edit' => 'itineraries#edit'
   patch '/itineraries/:id' => 'itineraries#update'
   delete '/itineraries/:id' => 'itineraries#destroy'
-  # post '/itineraries/:itinerary_id/venues' => 'venues#update'
   get '/itineraries/:itinerary_id/venues' => 'venues#index'
   post '/itineraries/:itinerary_id/venues' => 'venues#create'
   get '/itineraries/:itinerary_id/venues/:place_id' => 'venues#show'
   delete '/itineraries/:itinerary_id/venues/:venue_id' => 'venues#destroy'
- 
   get '/itineraries/:itinerary_id/restaurants' => 'restaurants#index'
- 
   get '/itineraries/:itinerary_id/restaurants/:place_id' => 'restaurants#show'
   delete '/itineraries/:itinerary_id/restaurants/:restaurant_id' => 'restaurants#destroy'
   post '/itineraries/:itinerary_id/restaurants' => 'restaurants#create'
