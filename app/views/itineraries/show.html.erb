@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row">
-    <h3>Five day forecast for <%=@city%> <%=@state%>:</h3>
+    <h3>5-day forecast for <%=@city%> <%=@state%>:</h3>
       <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
       <div class="col-md-2">
         <h3><%= day["day"]%></h3>
         <h4>High: <%= day["high"]%></h4>
         <h4>Low: <%= day["low"]%></h4>
+        <h4><%= day["text"]%></h4>
       </div>
     <%end%>
  </div>
@@ -35,7 +36,9 @@
           <%= submit_tag 'Submit'%>
         <% end %>
       <% else %>
+        <h4>Your posts:</h4>
       <%= @posts.first.text %>
+      <h4>Give it <%= @posts.first.time %> hours.</h4>
       <%end%> 
     <% end %>    
      

@@ -102,6 +102,7 @@
             <h3><a href="/itineraries/<%=itinerary.id%>"><%= itinerary.title %></a></h3>
           <% else %>
             <h3><a href="/itineraries/<%=itinerary.id%>/edit"><%= itinerary.title %></a></h3>
+            <h6>in the works...</h6>
           <% end %>  
           <%= itinerary.friendly_time %> 
           <% itinerary.venues.each do |venue| %>
