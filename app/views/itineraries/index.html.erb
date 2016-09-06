@@ -94,32 +94,36 @@
         </div> <!-- / .carousel-->
       </div> <!-- / .hero__inner -->
     </div> <!-- / .hero -->
-
-    <h3>Your recent trips: </h3>
-    <% @itineraries.each do |itinerary| %>
-      <h3><a href="/itineraries/<%=itinerary.id%>"><%= itinerary.title %></a></h3>
-      <%= itinerary.friendly_time %> 
-      <% itinerary.venues.each do |venue| %>
-         <p><%= venue.name %></p>
-      <% end %>  
-      <% itinerary.restaurants.each do |restaurant| %>
-        <p><%= restaurant.name %></p>
-      <% end %>      
-      <% itinerary.projects.each do |project| %>
-        <p><%= project.name %></p>
-      <% end %>  
-    <% end %>  
-  
-   <%= form_tag "/itineraries", method: :post do %>
-  <div>
-   <%= label_tag :title, 'Please name your itinerary' %>
-    <%= text_field_tag :title %>
-  </div>
-  <div class="btn btn-default">
-    <%= submit_tag 'Get Started!' %>
-  </div>
-<% end %>
-    
+    <div class="container">
+      <div class="row">
+        <h3>Your recent trips: </h3>
+        <% @itineraries.last(3).reverse.each do |itinerary| %>
+          <% if itinerary.pending=false %>
+            <h3><a href="/itineraries/<%=itinerary.id%>"><%= itinerary.title %></a></h3>
+          <% else %>
+            <h3><a href="/itineraries/<%=itinerary.id%>/edit"><%= itinerary.title %></a></h3>
+          <% end %>  
+          <%= itinerary.friendly_time %> 
+          <% itinerary.venues.each do |venue| %>
+             <p><%= venue.name %></p>
+          <% end %>  
+          <% itinerary.restaurants.each do |restaurant| %>
+            <p><%= restaurant.name %></p>
+          <% end %>      
+          <% itinerary.projects.each do |project| %>
+            <p><%= project.name %></p>
+          <% end %>  
+        <% end %>  
+        
+        <%= form_tag "/itineraries", method: :post do %>
+            <%= label_tag :title, 'Please name your itinerary' %>
+            <%= text_field_tag :title %>
+          <div class="btn btn-default">
+            <%= submit_tag 'Get Started!' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
 
 
