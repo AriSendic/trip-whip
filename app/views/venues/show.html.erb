@@ -1,3 +1,6 @@
+<% if @restaurant %>
+<h3> People who went here ate at <%= @restaurant.name %></h3>
+<% end %>
 <% @posts.each do |post| %>
 <div class="col-sm-6">
   <div class="panel panel-primary">

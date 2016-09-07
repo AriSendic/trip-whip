@@ -39,7 +39,7 @@ class VenuesController < ApplicationController
     @posts = Post.where(api_id: @venue_id) 
     @itinerary = Itinerary.find_by(id: params[:itinerary_id])
     @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@venue_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
-   
+    @restaurant = Venue.find_by(api_id: params[:venue_id]).itinerary.restaurants[0]
   end
 
   def destroy
