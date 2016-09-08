@@ -40,8 +40,20 @@ class ItinerariesController < ApplicationController
 
   def edit
     @itinerary = Itinerary.find_by(id: params[:id])
-    
-    
+    if @itinerary.venues.count == 2
+      if @itinerary.restaurants.count > 0
+        @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
+      else 
+        @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng
+      end
+    elsif @itinerary.venues.count == 1
+      if @itinerary.restaurants.count > 0
+        @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
+      else @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng
+      end  
+    else
+      @markers = @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng   
+    end
     
   end
   

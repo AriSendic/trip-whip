@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <h1 class="section__title"><%=@itinerary.title%></h1>
+    <h1 class="section__title">Your trip: <%=@itinerary.title%></h1>
     <% if @itinerary.venues.count == 0 && @itinerary.restaurants.count == 0%>
       <h2>Start with a venue: </h2>  
       <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
@@ -11,14 +11,46 @@
         </div>
         <div class="form-group">
           <%= label_tag :category, 'Please enter your category:'%>
-          <%= text_field_tag :category %>
+          <%= text_field_tag :category, "", list: 'venues' %>
+          <datalist id="venues">
+            <option>aquarium</option>
+            <option>batting cages</option>
+            <option>beach</option>
+            <option>boat ride</option>
+            <option>horseback/pony riding</option>
+            <option>kayaking</option>
+            <option>mini golf</option>
+            <option>nature preserve</option>
+            <option>nature trail</option>
+            <option>paddle boat</option>
+            <option>park</option>
+            <option>petting zoo</option>
+            <option>ropes course</option>
+            <option>water park</option>
+            <option>water sports?</option>
+            <option>zoo</option>
+            <option> indoor </option> 
+            <option>amusement park </option>
+            <option>arcade</option>
+            <option>batting cages (indoor)sports complex?</option>
+            <option>bowling alley</option>
+            <option>children's museum</option>
+            <option>library</option>
+            <option>mall</option>
+            <option>mini golf (indoor)</option>
+            <option>museum</option>
+            <option>nature center</option>
+            <option>play area</option>
+            <option>rock climbing</option>
+            <option>science museum</option>
+            <option>skating rink</option>
+          </datalist>
         </div> 
         <div class="btn btn-default">
           <%= submit_tag 'Submit' %>
         </div>
       <% end %>  
-    <% end %>
-    <% if @itinerary.venues.count > 0 || @itinerary.restaurants.count > 0%>
+    <% else %>
       <% @itinerary.venues.each do |venue| %>
         <h3>Venue: <%= venue.name %></h3>
         <h4>Address: <%= venue.address %></h4>
@@ -76,11 +108,11 @@
       <%= form_tag "/itineraries/#{@itinerary.id}", method: :patch do %>
       <%= submit_tag "I'm Ready to go" %>
       <% end %>
-      <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue|<%=@itinerary.venues.first.lat%>,<%=@itinerary.venues.first.lng%>|<%=@itinerary.venues.last.lat%>,<%=@itinerary.venues.last.lng%>|<%=@itinerary.restaurants.first.lat%>,<%=@itinerary.restaurants.first.lng%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
-     <!--  <% @itinerary.projects.each do |project| %>
-        <p>Project: <%= project.name %></p>
-      <% end %> -->
+      
 
+      <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue|<%=@markers%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
+    
+      
 
     <% end %>
   </div>
