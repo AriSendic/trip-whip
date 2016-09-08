@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get '/' => 'itineraries#index'
   get '/index' => 'itineraries#index'
   post '/itineraries' => 'itineraries#create'
-  get '/itineraries/:id' => 'itineraries#show'
+  get '/itineraries/:id' => 'itineraries#show', as: :itinerary
   get '/itineraries/:id/edit' => 'itineraries#edit'
   patch '/itineraries/:id' => 'itineraries#update'
   delete '/itineraries/:id' => 'itineraries#destroy'
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   delete '/itineraries/:itinerary_id/restaurants/:restaurant_id' => 'restaurants#destroy'
   post '/itineraries/:itinerary_id/restaurants' => 'restaurants#create'
   patch '/itineraries/:itinerary_id/venues/:venue_id' => 'posts#create'
-  get '/signup' => 'users#new'
+  get '/signup' => 'users#new', as: :sign_up
   post '/users' => 'users#create'   
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
