@@ -27,6 +27,15 @@ class ItinerariesController < ApplicationController
     @city = parts[-4]
     @state = parts[-3]
     @data = Unirest.get("https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22#{@city}%2C%20#{@state}%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys").body
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ItineraryPdf.new(@itinerary)
+        send_data pdf.render, filename: "itinerary_#{@itinerary.id}.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end  
   end
 
   def edit

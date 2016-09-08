@@ -76,6 +76,7 @@
       <%= form_tag "/itineraries/#{@itinerary.id}", method: :patch do %>
       <%= submit_tag "I'm Ready to go" %>
       <% end %>
+      <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue|<%=@itinerary.venues.first.lat%>,<%=@itinerary.venues.first.lng%>|<%=@itinerary.venues.last.lat%>,<%=@itinerary.venues.last.lng%>|<%=@itinerary.restaurants.first.lat%>,<%=@itinerary.restaurants.first.lng%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
      <!--  <% @itinerary.projects.each do |project| %>
         <p>Project: <%= project.name %></p>
       <% end %> -->
