@@ -19,5 +19,5 @@
     <% end %>  
   </div>
 </div>  
-<%= render "shared/details", url: "/itineraries/#{@itinerary.id}/venues" %>
+<%= render "shared/details", url: "/itineraries/#{@itinerary.id}/venues", saved_markers: @saved_markers %>
 

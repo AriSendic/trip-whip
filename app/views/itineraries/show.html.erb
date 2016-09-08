@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h3>5-day forecast for <%=@city%> <%=@state%>:</h3>
+    <h3>5-day forecast for <%=@city%> <%=@state%>: <a href="https://www.yahoo.com/?ilc=401" target="_blank"> <img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/> </a></h3>
       <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
       <div class="col-md-2">
         <h3><%= day["day"]%></h3>
@@ -13,14 +13,14 @@
 </div>    
 <div class="container">
   <div class="row">    
-    <h1><%=@itinerary.title%></h1>
+    <h1>Your Trip: <%=@itinerary.title%></h1>
     <% @itinerary.venues.each do |venue| %>
       <h3>Venue: <%= venue.name %></h3>
       <h4>Address: <%= venue.address %></h4>
       <h4>Phone: <%= venue.phone %></h4> 
       <% @posts = Post.where("user_id = ? AND api_id = ?", current_user.id, venue.api_id )%>
       <% unless @posts.length > 0 %>
-        <h3> Leave a TripTip!</h3>
+        <h5> After you go, leave a TripTip!</h5>
         <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :patch do %> 
           <div>
             <%= label_tag :text %>
