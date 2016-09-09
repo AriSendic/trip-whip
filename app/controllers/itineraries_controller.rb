@@ -47,13 +47,15 @@ class ItinerariesController < ApplicationController
         @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng
       end
     elsif @itinerary.venues.count == 1
-      if @itinerary.restaurants.count > 0
+      if @itinerary.restaurants.count == 1
         @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
       else @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng
       end  
-    else
+    elsif @itinerary.venues.count == 0
+      if @itinerary.restaurants.count == 1
       @markers = @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng   
-    end
+      end
+    end  
     
   end
   
