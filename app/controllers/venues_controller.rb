@@ -53,9 +53,7 @@ class VenuesController < ApplicationController
       if @itinerary.restaurants.count > 0
         @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
       else @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng
-      end  
-    else
-      @saved_markers = @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng   
+      end    
     end
   end
 

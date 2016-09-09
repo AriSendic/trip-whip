@@ -53,7 +53,7 @@ class ItinerariesController < ApplicationController
       end  
     elsif @itinerary.venues.count == 0
       if @itinerary.restaurants.count == 1
-      @markers = @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng   
+        @markers = @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng   
       end
     end  
     

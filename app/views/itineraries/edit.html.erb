@@ -11,7 +11,7 @@
           </div>
           <div class="form-group">
             <%= label_tag :category, 'Please enter your category:'%>
-            <%= text_field_tag :category, "", list: 'venues' %>
+            <%= text_field_tag :category, "", list: 'venues', onmousedown: "value = '';" %>
             <%= render "datalist" %>
           </div> 
           <div class="btn btn-default">
@@ -36,7 +36,8 @@
                 <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
                   <div class="form-group">
                     <%= label_tag :category, 'What category?'%>
-                    <%= text_field_tag :category %>
+                    <%= text_field_tag :category, "", list: 'venues' %>
+                    <%= render "datalist" %>
                     <%= hidden_field_tag :lat, venue.lat %>
                     <%= hidden_field_tag :lng, venue.lng %>
                     <%= submit_tag "Submit" %>
@@ -71,7 +72,8 @@
             <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
               <div class="form-group">
                 <%= label_tag :category, 'What category?'%>
-                <%= text_field_tag :category %>
+                <%= text_field_tag :category, "", list: 'venues' %>
+                <%= render "datalist" %>
                 <%= hidden_field_tag :lat, restaurant.lat %>
                 <%= hidden_field_tag :lng, restaurant.lng %>
                 <%= submit_tag "Submit" %>
