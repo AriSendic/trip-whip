@@ -19,7 +19,7 @@
           </div>
         <% end %>  
       <% else %>
-        <% @itinerary.venues.each do |venue| %>
+        <% @itinerary.venues.each_with_index do |venue, index| %>
           <h3>Venue: <%= venue.name %></h3>
           <h4>Address: <%= venue.address %></h4>
           <h4>Phone: <%= venue.phone %></h4>
@@ -27,12 +27,12 @@
          
 
             <ul class="nav nav-pills">
-              <li><a data-toggle="pill" href="#menu1">Add a nearby venue</a></li>
-              <li><a data-toggle="pill" href="#menu2">Add a nearby restaurant</a></li>
+              <li><a data-toggle="pill" href="#menu1-<%= index %>">Add a nearby venue</a></li>
+              <li><a data-toggle="pill" href="#menu2-<%= index %>">Add a nearby restaurant</a></li>
             </ul>
 
             <div class="tab-content">
-              <div id="menu1" class="tab-pane fade">
+              <div id="menu1-<%= index %>" class="tab-pane fade">
                 <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
                   <div class="form-group">
                     <%= label_tag :category, 'What category?'%>
@@ -44,7 +44,7 @@
                   </div>  
                 <% end %>
               </div>
-              <div id="menu2" class="tab-pane fade">
+              <div id="menu2-<%= index %>" class="tab-pane fade">
                 <%= form_tag "/itineraries/#{@itinerary.id}/restaurants", method: :get do %>
                   <div class="form-group">
                     <%= label_tag :type, 'What kind of restaurant?'%>
@@ -60,15 +60,15 @@
 
         <% end %>
           
-        <% @itinerary.restaurants.each do |restaurant| %>
+        <% @itinerary.restaurants.each_with_index do |restaurant, index| %>
           <h3>Restaurant: <%= restaurant.name %></h3>
           <h4>Address: <%= restaurant.address %></h4>
           <h4>Phone: <%= restaurant.phone %></h4>
           <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/restaurants/#{restaurant.id}", method: :delete %>
           <ul class="nav nav-pills">
-            <li><a data-toggle="pill" href="#menu3">Add a nearby venue</a></li>
+            <li><a data-toggle="pill" href="#menu3-<%=index%>">Add a nearby venue</a></li>
           </ul>  
-          <div id="menu3" class="tab-pane fade">
+          <div id="menu3-<%= index %>" class="tab-pane fade">
             <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
               <div class="form-group">
                 <%= label_tag :category, 'What category?'%>

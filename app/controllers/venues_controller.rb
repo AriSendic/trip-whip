@@ -43,15 +43,20 @@ class VenuesController < ApplicationController
     if venue
       @restaurant = venue.itinerary.restaurants[0]
     end
+    
     if @itinerary.venues.count == 2
-      if @itinerary.restaurants.count > 0
+      if @itinerary.restaurants.count == 1
         @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
+      elsif @itinerary.restaurants.count == 2
+        @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng + "|" + @itinerary.restaurants.last.lat + "," + @itinerary.restaurants.last.lng
       else 
         @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng
       end
     elsif @itinerary.venues.count == 1
-      if @itinerary.restaurants.count > 0
+      if @itinerary.restaurants.count == 1
         @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
+      elsif @itinerary.restaurants.count == 2
+        @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng + "|" + @itinerary.restaurants.last.lat + "," + @itinerary.restaurants.last.lng
       else @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng
       end    
     end

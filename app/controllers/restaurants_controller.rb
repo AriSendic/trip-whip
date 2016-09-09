@@ -15,7 +15,13 @@ class RestaurantsController < ApplicationController
     @restaurant_id = params[:restaurant_id]
     @itinerary = Itinerary.find_by(id: params[:itinerary_id])
     @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@restaurant_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
-    if @itinerary.venues.count == 2
+    if @itinerary.venues.count == 3
+      if @itinerary.restaurants.count == 1
+        @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.venues[1].lat + "," + @itinerary.venues[1].lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
+      else
+        @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.venues[1].lat + "," + @itinerary.venues[1].lng
+      end
+    elsif @itinerary.venues.count == 2
       if @itinerary.restaurants.count > 0
         @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
       else 
@@ -25,9 +31,7 @@ class RestaurantsController < ApplicationController
       if @itinerary.restaurants.count > 0
         @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
       else @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng
-      end  
-    else
-      @saved_markers = @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng   
+      end   
     end
   end 
 

@@ -40,7 +40,15 @@ class ItinerariesController < ApplicationController
 
   def edit
     @itinerary = Itinerary.find_by(id: params[:id])
-    if @itinerary.venues.count == 2
+    if @itinerary.venues.count == 3
+      if @itinerary.restaurants.count == 1
+        @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.venues[1].lat + "," + @itinerary.venues[1].lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
+      elsif @itinerary.restaurants.count == 2
+        @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.venues[1].lat + "," + @itinerary.venues[1].lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng + "|" + @itinerary.restaurants.last.lat + "," + @itinerary.restaurants.last.lng 
+      else
+        @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.venues[1].lat + "," + @itinerary.venues[1].lng
+      end
+    elsif @itinerary.venues.count == 2
       if @itinerary.restaurants.count > 0
         @markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng
       else 
