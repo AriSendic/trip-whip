@@ -15,6 +15,10 @@ class RestaurantsController < ApplicationController
     @restaurant_id = params[:restaurant_id]
     @itinerary = Itinerary.find_by(id: params[:itinerary_id])
     @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@restaurant_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
+    restaurant = Restaurant.find_by(api_id: params[:restaurant_id])
+    if restaurant
+      @venue = restaurant.itinerary.venues[0]
+    end
     if @itinerary.venues.count == 3
       if @itinerary.restaurants.count == 1
         @saved_markers = @itinerary.venues.first.lat + "," + @itinerary.venues.first.lng + "|" + @itinerary.venues.last.lat + "," + @itinerary.venues.last.lng + "|" + @itinerary.venues[1].lat + "," + @itinerary.venues[1].lng + "|" + @itinerary.restaurants.first.lat + "," + @itinerary.restaurants.first.lng

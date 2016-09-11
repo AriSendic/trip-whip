@@ -1,1 +1,6 @@
+<div class="container">
+  <div class="row">
+    <% if @venue %>
+    <h3> People who ate here also went to <%= @venue.name %></h3>
+    <% end %>
 <%= render "shared/details", url: "/itineraries/#{@itinerary.id}/restaurants", saved_markers: @saved_markers %>
