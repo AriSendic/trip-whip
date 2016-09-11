@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
-    <% if @restaurant %>
-    <h3> People who went here ate at <%= @restaurant.name %></h3>
+    <% if @restaurants %>
+      <div class="list-group">
+        <img class="img-responsive list-group-item__img" src="/img/logo.jpg">
+        <div class="list-group-item__content">
+          <h4 class="list-group-item-heading">was here! People who went here ate at <%= @restaurants %>.</h4>
+        </div>
+        <div class="clearfix"></div>
+      </div>  
     <% end %>
     <% @posts.each do |post| %>
     <div class="col-sm-6">

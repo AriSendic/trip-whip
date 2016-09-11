@@ -1,6 +1,14 @@
 <div class="container">
   <div class="row">
-    <% if @venue %>
-    <h3> People who ate here also went to <%= @venue.name %></h3>
+    <% if @venues %>
+      <div class="list-group">
+        <img class="img-responsive list-group-item__img" src="/img/logo.jpg">
+        <div class="list-group-item__content">
+          <h4 class="list-group-item-heading">was here! People who ate here also visited <%= @venues %>.</h4>
+        </div>
+        <div class="clearfix"></div>
+      </div>  
     <% end %>
+  </div>
+</div>    
 <%= render "shared/details", url: "/itineraries/#{@itinerary.id}/restaurants", saved_markers: @saved_markers %>
