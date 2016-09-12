@@ -7482,7 +7482,7 @@ a.list-group-item .list-group-item-text {
  * List group image
  */
 .list-group-item__img {
-  width: 70px;
+  width: 90px;
   float: left;
   margin-right: 10px;
 }

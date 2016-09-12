@@ -24,7 +24,7 @@
       </div>
       <div class="col-sm-6">  
         <% if @data['result']['photos'] %>
-          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<%=@data['result']['photos'][0]['photo_reference']%>&key=<%=ENV['GOOGLE_PLACES_KEY']%>">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=<%=@data['result']['photos'][0]['photo_reference']%>&key=<%=ENV['GOOGLE_PLACES_KEY']%>">
         <% end %>
         <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:green|<%=@data["result"]["geometry"]["location"]["lat"]%>,<%=@data["result"]["geometry"]["location"]["lng"]%>&markers=color:blue|size:mid|<%=saved_markers%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
       </div>
