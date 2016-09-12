@@ -64,7 +64,7 @@
           <h3>Restaurant: <%= restaurant.name %></h3>
           <h4>Address: <%= restaurant.address %></h4>
           <h4>Phone: <%= restaurant.phone %></h4>
-          <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/restaurants/#{restaurant.id}", method: :delete %>
+          <i class="fa fa-trash-o"></i>   <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/restaurants/#{restaurant.id}", method: :delete %>
           <ul class="nav nav-pills">
             <li><a data-toggle="pill" href="#menu3-<%=index%>">Add a nearby venue</a></li>
           </ul>  
@@ -88,7 +88,11 @@
       <% end %>
     </div>
     <div class="col-sm-6">
-      <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue|<%=@markers%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
+      <% if @markers %>
+        <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue|<%=@markers%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
+      <% else %>
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center=39.5,-98.35&zoom=3&size=400x400&maptype=satellite&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
+      <% end %>    
     </div>
   </div>
 </div>

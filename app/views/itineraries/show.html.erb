@@ -1,15 +1,19 @@
 <div class="container">
   <div class="row">
-    <h3>5-day forecast for <%=@city%> <%=@state%>: <a href="https://www.yahoo.com/?ilc=401" target="_blank"> <img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/> </a></h3>
-      <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
-      <div class="col-md-2">
+    <div class="col-md-6 col-md-offset-3">
+     <h3>5-day forecast for <%=@city%> <%=@state%>: <a href="https://www.yahoo.com/?ilc=401" target="_blank"> <img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/> </a></h3>
+    </div>
+  </div>
+  <div class="row">
+    <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
+      <div class="col-md-2" style="border-right: 1px solid #ccc;">
         <h3><%= day["day"]%></h3>
         <h4>High: <%= day["high"]%></h4>
         <h4>Low: <%= day["low"]%></h4>
         <h4><%= day["text"]%></h4>
       </div>
     <%end%>
- </div>
+  </div>
 </div>    
 <div class="container">
   <div class="row">    
@@ -48,9 +52,15 @@
       <h4>Address: <%= restaurant.address %></h4>
       <h4>Phone: <%= restaurant.phone %></h4>
     <% end %>    
-    <%= form_tag "/itineraries/#{@itinerary.id}", method: :delete do %>
-      <%= submit_tag "Edit some more" %>
-    <% end %>
   </div>
-</div>    
-<p><%=link_to "Print PDF", itinerary_path(@itinerary, format: "pdf") %>
+  <div class="row">
+    <div class="col md-3">  
+      <%= form_tag "/itineraries/#{@itinerary.id}", method: :delete do %>
+        <%= submit_tag "Edit some more" %>
+      <% end %>
+    </div>
+    <div class="col md-3">
+     <%=link_to "Print PDF", itinerary_path(@itinerary, format: "pdf") %>
+    </div>
+  </div>  
+</div>

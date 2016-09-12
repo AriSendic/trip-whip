@@ -7377,8 +7377,8 @@ footer a:focus {
  * Footer Bottom
  */
 .footer_bottom {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 .footer__copyright {
   margin-top: 6px;

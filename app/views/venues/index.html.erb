@@ -18,7 +18,7 @@
             <h4>Rating: <%= venue["rating"]%></h4>
             <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue["place_id"]}", method: :get do %>
               <%= hidden_field_tag :venue_id, venue["place_id"] %> 
-              <%= submit_tag "More info" %>
+              <button type="submit" class="btn btn-warning">More Info</button>
             <% end %>
           </div>  
         <% end %>
