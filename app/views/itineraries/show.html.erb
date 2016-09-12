@@ -4,15 +4,15 @@
      <h3>5-day forecast for <%=@city%> <%=@state%>: <a href="https://www.yahoo.com/?ilc=401" target="_blank"> <img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/> </a></h3>
     </div>
   </div>
-  <div class="row">
-    <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
+  <div class="row"> 
+   <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
       <div class="col-md-2" style="border-right: 1px solid #ccc;">
         <h3><%= day["day"]%></h3>
         <h4>High: <%= day["high"]%></h4>
         <h4>Low: <%= day["low"]%></h4>
         <h4><%= day["text"]%></h4>
       </div>
-    <%end%>
+    <% end %>
   </div>
 </div>    
 <div class="container">
