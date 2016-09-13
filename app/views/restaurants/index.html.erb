@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header__title">Restaurant Search Results -    <img src="/img/powered_by_google_on_white.png"></h3>
+        <h3 class="page-header__title">Restaurant Search Results <img src="/img/powered_by_google_on_white.png" class="powered"></h3>
       </div>
     </div>
   </div>
@@ -18,7 +18,7 @@
               <h3><%= restaurant["name"]%></h3>
               <h4><%= restaurant["formatted_address"].split(", ")[0...-1].join(", ")%></h4>
               <h4>Rating: <%= restaurant["rating"]%></h4>
-              <h4>Price_level: <%= restaurant["price_level"]%>  <button type="submit" class="button">More Info</button></h4>
+              <h4>Price_level: <%= restaurant["price_level"]%>  <button type="submit" class="info-button">More Info</button></h4>
             <% end %>
           </div>  
         <% end %>

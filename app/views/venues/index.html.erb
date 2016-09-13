@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h3 class="page-header__title">Venue Search ResultsResults -    <img src="/img/powered_by_google_on_white.png"></h3>
+        <h3 class="page-header__title">Venue Search ResultsResults <img src="/img/powered_by_google_on_white.png" class="powered"></h3>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@
               <%= hidden_field_tag :venue_id, venue["place_id"] %> 
               <h3><%= venue["name"]%></h3>
               <h4><%= venue["formatted_address"].split(", ")[0...-1].join(", ")%></h4>
-              <h4>Rating: <%= venue["rating"]%>  <button type="submit" class="button">More Info</button></h4> 
+              <h4>Rating: <%= venue["rating"]%>  <button type="submit" class="info-button">More Info</button></h4> 
             <% end %>
           </div>  
         <% end %>

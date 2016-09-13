@@ -1081,7 +1081,7 @@ html {
 }
 body {
   font-family: 'PT Sans', sans-serif;
-  font-size: 1px;
+  font-size: 13px;
   line-height: 1.42857143;
   color: #333333;
   background-color: #ffffff;
@@ -9795,4 +9795,8 @@ iframe[src="about:blank"] {
 .framed {
     background:transparent;
     padding:8px;
-    border:1px solid #999999; }
+    border:1px solid #999999; 
+  }
+.powered {
+  margin-left: 7px;
+}   
