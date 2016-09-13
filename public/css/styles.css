@@ -1081,7 +1081,7 @@ html {
 }
 body {
   font-family: 'PT Sans', sans-serif;
-  font-size: 13px;
+  font-size: 1px;
   line-height: 1.42857143;
   color: #333333;
   background-color: #ffffff;
@@ -9764,7 +9764,7 @@ iframe[src="about:blank"] {
   margin-bottom: 15px;
   background: #f9f9f9;
 }
-.button {
+.info-button {
   margin-left: 20px;
   padding: 9px 13px;
   font-size: 14px;
@@ -9778,9 +9778,9 @@ iframe[src="about:blank"] {
   box-shadow: 0 5px #999;
 }
 
-.button:hover {background-color: #3e8e41}
+.info-button:hover {background-color: #3e8e41}
 
-.button:active {
+.info-button:active {
   background-color: #3e8e41;
   box-shadow: 0 3px #666;
   transform: translateY(4px);
@@ -9792,7 +9792,7 @@ iframe[src="about:blank"] {
   height: 40px;
     width: 25%;
 }
-.img-frame {
+.framed {
     background:transparent;
     padding:8px;
     border:1px solid #999999; }
