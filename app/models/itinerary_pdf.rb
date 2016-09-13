@@ -7,7 +7,6 @@ class ItineraryPdf < Prawn::Document
     itinerary_name
     venues
     restaurants
-   
   end
 
   def itinerary_name

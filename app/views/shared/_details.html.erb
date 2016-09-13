@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-6"> 
         <h2><%= @data["result"]["name"] %></h2>
-        <h4><%= @data["result"]["formatted_address"] %></h4>
+        <h4><%= @data["result"]["formatted_address"].split(", ")[0...-1].join(", ") %></h4>
         <h4><%= @data["result"]["formatted_phone_number"] %></h4>
         <% if @data["result"]["opening_hours"] %>
           <h4>Hours: <% @data["result"]["opening_hours"]["weekday_text"].each do |day|%></h4>
@@ -15,7 +15,7 @@
           <%= hidden_field_tag :name, @data["result"]["name"] %>
           <%= hidden_field_tag :lat, @data["result"]["geometry"]["location"]["lat"] %>
           <%= hidden_field_tag :lng, @data["result"]["geometry"]["location"]["lng"] %>
-          <%= hidden_field_tag :address, @data["result"]["formatted_address"] %>
+          <%= hidden_field_tag :address, @data["result"]["formatted_address"].split(", ")[0...-1].join(", ") %>
           <%= hidden_field_tag :phone, @data["result"]["formatted_phone_number"] %>
           <%= hidden_field_tag :itinerary_id, @itinerary.id %>
          <button type="submit" class="btn btn-success">Add to itinerary!</button>
@@ -24,7 +24,7 @@
       </div>
       <div class="col-sm-6">  
         <% if @data['result']['photos'] %>
-          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=<%=@data['result']['photos'][0]['photo_reference']%>&key=<%=ENV['GOOGLE_PLACES_KEY']%>">
+          <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=<%=@data['result']['photos'][0]['photo_reference']%>&key=<%=ENV['GOOGLE_PLACES_KEY']%>" alt="" class="img-frame">
         <% end %>
         <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:green|<%=@data["result"]["geometry"]["location"]["lat"]%>,<%=@data["result"]["geometry"]["location"]["lng"]%>&markers=color:blue|size:mid|<%=saved_markers%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
       </div>

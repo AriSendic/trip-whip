@@ -14,9 +14,7 @@
             <%= text_field_tag :category, "", list: 'venues', onmousedown: "value = '';" %>
             <%= render "datalist" %>
           </div> 
-          <div class="btn btn-default">
-            <button type="submit" class="btn btn-success"><i class="fa fa-plane"></i></button>
-          </div>
+          <button type="submit" class="btn btn-success"><i class="fa fa-plane"></i></button>
         <% end %>  
       <% else %>
         <% @itinerary.venues.each_with_index do |venue, index| %>

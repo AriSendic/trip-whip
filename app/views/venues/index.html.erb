@@ -13,12 +13,11 @@
       <div class="list-group">
         <% @data["results"].each do |venue| %>
           <div class="list-group-item">
-            <h3><%= venue["name"]%></h3>
-            <h4><%= venue["formatted_address"] %></h4>
-            <h4>Rating: <%= venue["rating"]%></h4>
-            <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue["place_id"]}", method: :get do %>
+            <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue["place_id"]}", method: :get do %>   
               <%= hidden_field_tag :venue_id, venue["place_id"] %> 
-              <button type="submit" class="btn btn-warning">More Info</button>
+              <h3><%= venue["name"]%></h3>
+              <h4><%= venue["formatted_address"].split(", ")[0...-1].join(", ")%></h4>
+              <h4>Rating: <%= venue["rating"]%>  <button type="submit" class="button">More Info</button></h4> 
             <% end %>
           </div>  
         <% end %>

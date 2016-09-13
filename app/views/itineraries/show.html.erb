@@ -1,66 +1,77 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-     <h3>5-day forecast for <%=@city%> <%=@state%>: <a href="https://www.yahoo.com/?ilc=401" target="_blank"> <img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/> </a></h3>
+      <h3 >5-day forecast for <%=@city%> <%=@state%> <a href="https://www.yahoo.com/?ilc=401" target="_blank"></a></h3>
     </div>
   </div>
-  <div class="row"> 
-   <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
-      <div class="col-md-2" style="border-right: 1px solid #ccc;">
-        <h3><%= day["day"]%></h3>
-        <h4>High: <%= day["high"]%></h4>
-        <h4>Low: <%= day["low"]%></h4>
-        <h4><%= day["text"]%></h4>
-      </div>
-    <% end %>
+  <div class="ui__section"> 
+    <div class="row">
+      <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
+        <div class="col-md-2" style="border-right: 1px solid #ccc;">
+          <h3><%= day["day"]%></h3>
+          <h4>High: <%= day["high"]%></h4>
+          <h4>Low: <%= day["low"]%></h4>
+          <h4><%= day["text"]%></h4>
+        </div>
+      <% end %>
+      <img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/> 
+    </div>  
   </div>
 </div>    
 <div class="container">
   <div class="row">    
-    <h1>Your Trip: <%=@itinerary.title%></h1>
-    <% @itinerary.venues.each do |venue| %>
-      <h3>Venue: <%= venue.name %></h3>
-      <h4>Address: <%= venue.address %></h4>
-      <h4>Phone: <%= venue.phone %></h4> 
-      <% @posts = Post.where("user_id = ? AND api_id = ?", current_user.id, venue.api_id )%>
-      <% unless @posts.length > 0 %>
-        <h5> After you go, leave a TripTip!</h5>
-        <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :patch do %> 
-          <div>
-            <%= label_tag :text %>
-            <%= text_area_tag :text %>
-          </div>
-          <%= hidden_field_tag :user_id, current_user.id %>
-          <%= hidden_field_tag :api_id, venue.api_id %>
-          <h5>How many hours should I give it?</h5>
-          <select name="time">
-          <% @times.each do |time| %>
+    <div class="col-sm-6">
+      <h1 class="section__title">Your Trip: <%=@itinerary.title%></h1> 
+      <% @itinerary.venues.each do |venue| %>
+        <h3>Venue: <%= venue.name %></h3>
+        <h4>Address: <%= venue.address %></h4>
+        <h4 >Phone: <%= venue.phone %></h4> 
+        <% @posts = Post.where("user_id = ? AND api_id = ?", current_user.id, venue.api_id )%>
+        <% if @posts.length == 0 %>
+          <div class="tip">
+            <h4>Leave a<img class="logo__small" src="/img/tip.jpg"></h4>
+            <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :patch do %> 
+              <div>
+                <%= label_tag :text %>
+                <%= text_area_tag :text, "", :size =>"30x5" %>
+              </div>
+              <%= hidden_field_tag :user_id, current_user.id %>
+              <%= hidden_field_tag :api_id, venue.api_id %>
+              <h4>How many hours should I give it?</h4>
+              
+                <select name="time">
+                <% @times.each do |time| %>
                   <option value=<%=time%>><%=time%></option>
-          <% end %>   
-          <%= submit_tag 'Submit'%>
-        <% end %>
-      <% else %>
-        <h4>Your posts:</h4>
-      <%= @posts.first.text %>
-      <h4>Give it <%= @posts.first.time %> hours.</h4>
-      <%end%> 
-    <% end %>    
-     
-        
-    <% @itinerary.restaurants.each do |restaurant| %>
-      <h3>Restaurant: <%= restaurant.name %></h3>
-      <h4>Address: <%= restaurant.address %></h4>
-      <h4>Phone: <%= restaurant.phone %></h4>
-    <% end %>    
-  </div>
-  <div class="row">
-    <div class="col md-3">  
+                <% end %>
+
+              <input class="btn btn-default" type="submit" value="Submit">
+            <% end %>
+          </div>
+        <% else %>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">TripTip</h3>
+            </div>
+            <div class="panel-body">
+              <h5><p><%= @posts.first.text %></p>
+              Give it about <%= @posts.first.time %> hours.</h5>
+            </div>
+          </div>
+        <% end %>   
+      <% end %>    
+      
+       
+      <% @itinerary.restaurants.each do |restaurant| %>
+        <h3>Restaurant: <%= restaurant.name %></h3>
+        <h4>Address: <%= restaurant.address %></h4>
+        <h4>Phone: <%= restaurant.phone %></h4>
+      <% end %>    
+    </div> 
+    <div class="col-sm-6">
       <%= form_tag "/itineraries/#{@itinerary.id}", method: :delete do %>
-        <%= submit_tag "Edit some more" %>
-      <% end %>
+        <input class="btn btn-warning" type="submit" value="Edit some more">
+      <% end %>   
+      <h3><%=link_to "Print PDF", itinerary_path(@itinerary, format: "pdf") %></h3>
     </div>
-    <div class="col md-3">
-     <%=link_to "Print PDF", itinerary_path(@itinerary, format: "pdf") %>
-    </div>
-  </div>  
+  </div>
 </div>
