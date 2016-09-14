@@ -5452,8 +5452,9 @@ button.list-group-item-danger.active:focus {
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 15px;
+  font-size: 19px;
   color: inherit;
+  font-family: 'Racing Sans One', cursive;
 }
 .panel-title > a,
 .panel-title > small,
@@ -6753,7 +6754,7 @@ button.close {
   display: block;
   position: relative;
   padding-right: 20px;
-  font-size: 13px;
+  font-size: 19px;
 }
 .panel-group > .panel .panel-title > a:hover,
 .panel-group > .panel .panel-title > a:focus {
@@ -9785,9 +9786,6 @@ iframe[src="about:blank"] {
   box-shadow: 0 3px #666;
   transform: translateY(4px);
 }
-.tip {
-  text-align: center ;
-}
 .logo__small {
   height: 40px;
     width: 25%;
@@ -9806,4 +9804,9 @@ iframe[src="about:blank"] {
 }
 .lower {
   margin-top: 10px;
+}
+.racing {
+  font-family: 'Racing Sans One', cursive;
+  font-size: 18px;
+  color: #ff5722;
 }

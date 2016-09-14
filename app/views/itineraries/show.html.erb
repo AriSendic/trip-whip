@@ -1,24 +1,24 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h3 >5-day forecast for <%=@city%> <%=@state%> <a href="https://www.yahoo.com/?ilc=401" target="_blank"></a></h3>
+    <div class="text-center">
+      <h3>5-day forecast for <%=@city%> <%=@state%></h3>
     </div>
   </div>
-  <div class="ui__section"> 
-    <div class="row">
-      <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
-        <div class="col-md-2" style="border-right: 1px solid #ccc;">
-          <h3><%= day["day"]%></h3>
-          <h4>High: <%= day["high"]%></h4>
-          <h4>Low: <%= day["low"]%></h4>
-          <h4><%= day["text"]%></h4>
-        </div>
-      <% end %>
-      <img src="https://poweredby.yahoo.com/purple.png" width="134" height="29"/> 
-    </div>  
+  <div class="row text-center">
+    <div class="ui__section"> 
+      <div class="row">
+        <% @data["query"]["results"]["channel"]["item"]["forecast"][0..4].each do |day|%>
+          <div class="col-md-2" style="border-right: 1px solid #ccc;">
+            <h3><%= day["day"]%></h3>
+            <h4>High: <%= day["high"]%></h4>
+            <h4>Low: <%= day["low"]%></h4>
+            <h4><%= day["text"]%></h4>
+          </div>
+        <% end %>
+        <a href="https://www.yahoo.com/?ilc=401" target="_blank"><img src="https://poweredby.yahoo.com/purple.png" class="powered" width="134" height="29"/></a> 
+      </div>  
+    </div>    
   </div>
-</div>    
-<div class="container">
   <div class="row">    
     <div class="col-sm-6">
       <h1 class="section__title">Your Trip: <%=@itinerary.title%></h1> 
@@ -28,24 +28,36 @@
         <h4 >Phone: <%= venue.phone %></h4> 
         <% @posts = Post.where("user_id = ? AND api_id = ?", current_user.id, venue.api_id )%>
         <% if @posts.length == 0 %>
-          <div class="tip">
-            <h4>Leave a<img class="logo__small" src="/img/tip.jpg"></h4>
-            <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :patch do %> 
-              <div>
-                <%= label_tag :text %>
-                <%= text_area_tag :text, "", :size =>"30x5" %>
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Leave a <span class="racing">Trip Tip</span> for this venue
+                  </a>
+                </h4>
               </div>
-              <%= hidden_field_tag :user_id, current_user.id %>
-              <%= hidden_field_tag :api_id, venue.api_id %>
-              <h4>How many hours should I give it?</h4>
-              
-                <select name="time">
-                <% @times.each do |time| %>
-                  <option value=<%=time%>><%=time%></option>
-                <% end %>
+              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :patch do %> 
+                    <div>
+                      <%= label_tag :text %>
+                      <%= text_area_tag :text, "", :size =>"30x5" %>
+                    </div>
+                    <%= hidden_field_tag :user_id, current_user.id %>
+                    <%= hidden_field_tag :api_id, venue.api_id %>
+                    <h4>How many hours should I give it?</h4>
+            
+                    <select name="time">
+                    <% @times.each do |time| %>
+                      <option value=<%=time%>><%=time%></option>
+                    <% end %>
 
-              <input class="btn btn-default" type="submit" value="Submit">
-            <% end %>
+                    <input class="btn btn-default powered" type="submit" value="Submit">
+                  <% end %>
+                </div>
+              </div>
+            </div>
           </div>
         <% else %>
           <div class="panel panel-primary">
