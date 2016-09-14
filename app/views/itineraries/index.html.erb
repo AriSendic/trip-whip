@@ -78,7 +78,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h1 class="section__title">Your recent trips: </h1>
+          <h1 class="section__title lower">Your recent trips: </h1>
         </div> 
         <% @itineraries.last(3).reverse.each do |itinerary| %>
           <div class="col-xs-12 col-sm-4">
@@ -102,7 +102,7 @@
                 <h4><%= venue.name %></h4>
               <% end %>  
               <% itinerary.restaurants.each do |restaurant| %>
-                <h4><i class="fa fa-cutlery"></i>    <%= restaurant.name %></h4>
+                <h4>   <%= restaurant.name %></h4>
               <% end %>      
             </div> 
           </div>

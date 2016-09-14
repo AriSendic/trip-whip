@@ -78,10 +78,11 @@
               </div>  
             <% end %>
           </div>  
-
         <% end %>
         <%= form_tag "/itineraries/#{@itinerary.id}", method: :patch do %>
-        <button type="submit" class="btn btn-lg btn-success">I'm ready to go!</button>
+        <div class="ready">
+          <button type="submit" class="btn btn-lg btn-success">I'm ready to go!</button>
+        </div>  
         <% end %>
       <% end %>
     </div>

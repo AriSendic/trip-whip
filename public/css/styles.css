@@ -9794,9 +9794,16 @@ iframe[src="about:blank"] {
 }
 .framed {
     background:transparent;
-    padding:8px;
+    padding:7px;
     border:1px solid #999999; 
-  }
+}
 .powered {
   margin-left: 7px;
-}   
+}
+.ready {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+.lower {
+  margin-top: 10px;
+}

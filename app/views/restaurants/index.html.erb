@@ -23,6 +23,39 @@
           </div>  
         <% end %>
       </div>
-    </div> 
+    </div>
+    <div class="col-sm-4 col-md-3">
+      <a href="/itineraries/<%=@itinerary.id%>/edit"><button type="button" class="btn btn-warning">Back To Search</button></a> 
+      <% if @itinerary.venues.count > 0 || @itinerary.restaurants.count > 0%>
+        <h3 class="header header_plain">Your Itinerary So Far</h3>
+        <div class="panel panel-default">
+          <div class="panel-body">            
+            <% n = 1 %>
+            <% o = 1 %>
+            <% @itinerary.venues.each do |venue| %>  
+              <div class="list-group-item">
+                <img class="img-responsive list-group-item__img" src="/img/outdoor<%=n%>.jpg">
+                <div class="list-group-item__content">
+                  <p><%=venue.name%></p>
+                  <p><%=venue.address%></p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <% n += 1 %>
+            <% end %>
+            <% @itinerary.restaurants.each do |restaurant| %>
+              <div class="list-group-item">
+                <img class="img-responsive list-group-item__img" src="/img/pizza<%=o%>.png">
+                <div class="list-group-item__content">
+                  <p><%=restaurant.name%></p>
+                  <p><%=restaurant.address%></p>
+                </div>
+              </div>
+              <% o += 1 %>
+            <% end %>      
+          </div>
+        </div>
+      <% end %>        
+    </div>  
   </div>
 </div>        

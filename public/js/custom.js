@@ -141,3 +141,7 @@ function footerSize() {
 }
 footerSize();
 $(window).resize(footerSize);
+
+function goBack() {
+    window.history.back();
+}

@@ -1,7 +1,7 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-sm-6"> 
+      <div class="col-sm-6 tip"> 
         <h2><%= @data["result"]["name"] %></h2>
         <h4><%= @data["result"]["formatted_address"].split(", ")[0...-1].join(", ") %></h4>
         <h4><%= @data["result"]["formatted_phone_number"] %></h4>
@@ -19,14 +19,17 @@
           <%= hidden_field_tag :phone, @data["result"]["formatted_phone_number"] %>
           <%= hidden_field_tag :itinerary_id, @itinerary.id %>
          <button type="submit" class="btn btn-success">Add to itinerary!</button>
+
+         <button class="btn btn-warning" onclick="goBack()">Back to the list</button>
           
         <% end %>
+      
       </div>
       <div class="col-sm-6">  
         <% if @data['result']['photos'] %>
           <img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=<%=@data['result']['photos'][0]['photo_reference']%>&key=<%=ENV['GOOGLE_PLACES_KEY']%>" class="framed">
         <% end %>
-        <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:green|<%=@data["result"]["geometry"]["location"]["lat"]%>,<%=@data["result"]["geometry"]["location"]["lng"]%>&markers=color:blue|size:mid|<%=saved_markers%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
+        <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:green|<%=@data["result"]["geometry"]["location"]["lat"]%>,<%=@data["result"]["geometry"]["location"]["lng"]%>&markers=color:blue|size:mid|<%=saved_markers%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>" class="powered">
       </div>
     </div>    
    
