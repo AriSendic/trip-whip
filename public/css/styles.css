@@ -7513,7 +7513,7 @@ a.list-group-item .list-group-item-text {
 .navbar-brand,
 .navbar-nav > li > a,
 .topbar-nav > li > a {
-  font-family: 'Racing Sans One', cursive;
+  font-family: 'Roboto Slab', serif;
   -webkit-transition: color 0.1s;
   -o-transition: color 0.1s;
   transition: color 0.1s;
@@ -9808,4 +9808,10 @@ iframe[src="about:blank"] {
   font-family: 'Racing Sans One', cursive;
   font-size: 18px;
   color: #ff5722;
+}
+.racing-title {
+  font-family: 'Racing Sans One', cursive;
+}
+.map {
+  margin-bottom: 13 px;
 }

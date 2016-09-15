@@ -37,14 +37,14 @@
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                   <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingTwo">
-                      <h4 class="panel-title">
+                      <h4 class="panel-title text-center">
                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                           Leave a <span class="racing">Trip Tip</span> for this venue
                         </a>
                       </h4>
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                      <div class="panel-body">
+                      <div class="panel-body text-center">
                         <%= form_tag "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :patch do %> 
                           <div>
                             <%= label_tag :text %>
