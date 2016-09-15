@@ -8223,7 +8223,6 @@ footer {
 .hero__h1,
 .hero__h2,
 .hero__intro {
-  color: red;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 .hero__h1 {
@@ -9799,11 +9798,11 @@ iframe[src="about:blank"] {
   margin-left: 7px;
 }
 .ready {
-  margin-top: 0px;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  
 }
 .lower {
-  margin-top: 10px;
+  margin-top: 28px;
 }
 .racing {
   font-family: 'Racing Sans One', cursive;

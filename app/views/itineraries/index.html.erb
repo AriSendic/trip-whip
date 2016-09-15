@@ -1,133 +1,113 @@
-   <!-- HERO BLOCK
-    ============================== -->
-    <div class="hero">
-      <div class="hero__inner">
-
-        <!-- Carousel -->
-        <div id="hero__carousel" class="carousel slide" data-ride="carousel" data-pause="false">
-          <div class="carousel-inner" role="listbox">
-
-            <!-- 1st Slide -->
-            <div class="item active" id="hero-carousel__item_1">
-              <div class="wrapper">
-                <div class="wrapper__inner">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-sm-12 text-center">
-                        <h1 class="hero__h1">Kids on vacation?</h1>
-                      </div>
-                    </div> <!-- / .row -->
-                  </div> <!-- / .container -->
-                </div> <!-- / .wrapper__inner -->
-              </div> <!-- / .wrapper -->
-            </div> <!-- / .item -->
-
-            <!-- 2nd Slide -->
-            <div class="item" id="hero-carousel__item_2">
-              <div class="wrapper">
-                <div class="wrapper__inner">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-sm-12 text-center">
-                        <h1 class="hero__h1">Want them away from the screen?</h1>
-        
-                      </div>
-                    </div> <!-- / .row -->
-                  </div> <!-- / .container -->
-                </div> <!-- / .wrapper__inner -->
-              </div> <!-- / .wrapper -->
-            </div> <!-- / .item -->
-
-            <!-- 3d Slide -->
-            <div class="item" id="hero-carousel__item_3">
-              <div class="wrapper">
-                <div class="wrapper__inner">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-sm-12 text-center">
-                        <h1 class="hero__h1">TripWhip</h1>
-                        
-                      </div>
-                    </div> <!-- / .row -->
-                  </div> <!-- / .container -->
-                </div> <!-- / .wrapper__inner -->
-              </div> <!-- / .wrapper -->
-            </div> <!-- / .item -->
-
-          </div> <!-- . carousel-inner -->
-
-          <!-- Carousel controls -->
-          <div class="hero__ctrl js-hero-crsl__ctrl">
-            <a href="#hero__carousel" role="button" data-slide="prev">
-              <i class="fa fa-step-backward"></i>
-            </a>
-            <a href="#" data-slide="pause" class="playback visible-inline-block">
-              <i class="fa fa-pause"></i>
-            </a>
-            <a href="#" data-slide="cycle" class="playback hidden">
-              <i class="fa fa-play"></i>
-            </a>
-            <a href="#hero__carousel" role="button" data-slide="next">
-              <i class="fa fa-step-forward"></i>
-            </a>
-          </div> <!-- / .hero__ctrl -->
-
-        </div> <!-- / .carousel-->
-      </div> <!-- / .hero__inner -->
-    </div> <!-- / .hero -->
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <h1 class="section__title lower">Your recent trips: </h1>
-        </div> 
-        <% @itineraries.last(3).reverse.each do |itinerary| %>
-          <div class="col-xs-12 col-sm-4">
-            <div class="features__item">
-              <% if itinerary.pending == false %>
-                <div class="features__icon wow flipInY">
-                  <i class="fa fa-check"></i>
-                  <i class="fa fa-check"></i> <!-- Required for animation -->
-                </div>
-                <h2 class="features_title"><a href="/itineraries/<%=itinerary.id%>"><%= itinerary.title %></a></h2>
-                completed <%= itinerary.friendly_time %>
-              <% else %>
-                <div class="features__icon wow flipInY">
-                  <i class="fa fa-ellipsis-h"></i>
-                  <i class="fa fa-ellipsis-h"></i> <!-- Required for animation -->
-                </div>
-                <h2 class="features_title"><a href="/itineraries/<%=itinerary.id%>/edit"><%= itinerary.title %></a></h2>
-                <p>pending...</p>
-              <% end %> 
-              <% itinerary.venues.each do |venue| %>
-                <h4><%= venue.name %></h4>
-              <% end %>  
-              <% itinerary.restaurants.each do |restaurant| %>
-                <h4>   <%= restaurant.name %></h4>
-              <% end %>      
+<div class="hero">
+  <div class="hero__inner">
+    <div id="hero__carousel" class="carousel slide" data-ride="carousel" data-pause="false">
+      <div class="carousel-inner" role="listbox">
+        <div class="item active" id="hero-carousel__item_1">
+          <div class="wrapper">
+            <div class="wrapper__inner">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12 text-center">
+                    <h1 class="hero__h1">Kids on vacation?</h1>
+                  </div>
+                </div> 
+              </div> 
             </div> 
-          </div>
-        <% end %>  
+          </div> 
+        </div> 
+        <div class="item" id="hero-carousel__item_2">
+          <div class="wrapper">
+            <div class="wrapper__inner">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12 text-center">
+                    <h1 class="hero__h1">Want them away from the screen?</h1>
+                  </div>
+                </div> 
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+        <div class="item" id="hero-carousel__item_3">
+          <div class="wrapper">
+            <div class="wrapper__inner">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12 text-center">
+                    <h1 class="hero__h1">TripWhip</h1>
+                  </div>
+                </div> 
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+      <div class="hero__ctrl js-hero-crsl__ctrl">
+        <a href="#hero__carousel" role="button" data-slide="prev">
+          <i class="fa fa-step-backward"></i>
+        </a>
+        <a href="#" data-slide="pause" class="playback visible-inline-block">
+          <i class="fa fa-pause"></i>
+        </a>
+        <a href="#" data-slide="cycle" class="playback hidden">
+          <i class="fa fa-play"></i>
+        </a>
+        <a href="#hero__carousel" role="button" data-slide="next">
+          <i class="fa fa-step-forward"></i>
+        </a>
+      </div> 
+    </div> 
+  </div> 
+</div> 
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="section__title lower">Your recent trips: </h1>
+    </div> 
+    <% @itineraries.last(3).reverse.each do |itinerary| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="features__item">
+          <% if itinerary.pending == false %>
+            <div class="features__icon wow flipInY">
+              <i class="fa fa-check"></i>
+              <i class="fa fa-check"></i> 
+            </div>
+            <h2 class="features_title"><a href="/itineraries/<%=itinerary.id%>"><%= itinerary.title %></a></h2>
+            completed <%= itinerary.friendly_time %>
+          <% else %>
+            <div class="features__icon wow flipInY">
+              <i class="fa fa-ellipsis-h"></i>
+              <i class="fa fa-ellipsis-h"></i> 
+            </div>
+            <h2 class="features_title"><a href="/itineraries/<%=itinerary.id%>/edit"><%= itinerary.title %></a></h2>
+            <p>pending...</p>
+          <% end %> 
+          <% itinerary.venues.each do |venue| %>
+            <h4><%= venue.name %></h4>
+          <% end %>  
+          <% itinerary.restaurants.each do |restaurant| %>
+            <h4>   <%= restaurant.name %></h4>
+          <% end %>      
+        </div> 
+      </div>
+    <% end %>  
+  </div>
+</div>    
+<div class="section section_portfolio section_alt">    
+  <div class="container">
+    <div class="row">
+      <h1 class="section__title">Get Started!</h1>
+      <div class="section__intro">
+        <%= form_tag "/itineraries", method: :post do %>
+          <%= label_tag :title, 'Please name your itinerary' %>
+          <%= text_field_tag :title %>
+          <button type="submit" class="btn btn-success"><i class="fa fa-plane"></i></button>
+        <% end %>
       </div>
     </div>    
-        
-    <div class="container">
-      <div class="row">
-        <div class="ui__section">
-          <h1 class="section__title">Get Started!</h1>
-          <div class="section__intro">
-            <%= form_tag "/itineraries", method: :post do %>
-              <%= label_tag :title, 'Please name your itinerary' %>
-              <%= text_field_tag :title %>
-              <button type="submit" class="btn btn-success"><i class="fa fa-plane"></i></button>
-            <% end %>
-          </div>
-        </div>    
-      </div>
-    </div>
+  </div>
+</div>
 
-
-
-    
 
 
     <script src="/js/custom_hero.js"></script>

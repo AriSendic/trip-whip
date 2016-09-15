@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
-      <h1 class="section__title">Your trip: <%=@itinerary.title%></h1>
+    <h1 class="section__title">Your trip: <%=@itinerary.title%></h1>
+    <div class="col-md-6">
       <% if @itinerary.venues.count == 0 && @itinerary.restaurants.count == 0%>
         <h2>Start with a venue: </h2>  
         <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
@@ -17,81 +17,87 @@
           </div> 
         <% end %>  
       <% else %>
-        <% @itinerary.venues.each_with_index do |venue, index| %>
-          <h3>Venue: <%= venue.name %></h3>
-          <h4>Address: <%= venue.address %></h4>
-          <h4>Phone: <%= venue.phone %></h4>
-          <i class="fa fa-trash-o"></i>   <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :delete %>
-         
-
+        <div class="well">
+          <% @itinerary.venues.each_with_index do |venue, index| %>
+            <h3>Venue: <%= venue.name %></h3>
+            <h4>Address: <%= venue.address %></h4>
+            <h4>Phone: <%= venue.phone %></h4>
+            <i class="fa fa-trash-o"></i>   <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/venues/#{venue.id}", method: :delete %>
+              <ul class="nav nav-pills">
+                <li><a data-toggle="pill" href="#menu1-<%= index %>">Add a nearby venue</a></li>
+                <li><a data-toggle="pill" href="#menu2-<%= index %>">Add a nearby restaurant</a></li>
+              </ul>
+              <div class="tab-content">
+                <div id="menu1-<%= index %>" class="tab-pane fade">
+                  <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
+                    <div class="well">
+                      <div class="form-group">
+                        <%= label_tag :category, 'What category?'%>
+                        <%= text_field_tag :category, "", list: 'venues' %>
+                        <%= render "datalist" %>
+                        <%= hidden_field_tag :lat, venue.lat %>
+                        <%= hidden_field_tag :lng, venue.lng %>
+                        <input class="btn btn-default" type="submit" value="Find It">
+                      </div>
+                    </div>     
+                  <% end %>
+                </div>
+                <div id="menu2-<%= index %>" class="tab-pane fade">
+                  <%= form_tag "/itineraries/#{@itinerary.id}/restaurants", method: :get do %>
+                    <div class="well">  
+                      <div class="form-group">
+                        <%= label_tag :type, 'What kind of restaurant?'%>
+                        <%= text_field_tag :type %>
+                        <%= hidden_field_tag :lat, venue.lat %>
+                        <%= hidden_field_tag :lng, venue.lng %>
+                        <input class="btn btn-default" type="submit" value="Find It">
+                      </div>
+                    </div>  
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
+          <% @itinerary.restaurants.each_with_index do |restaurant, index| %>
+            <h3>Restaurant: <%= restaurant.name %></h3>
+            <h4>Address: <%= restaurant.address %></h4>
+            <h4>Phone: <%= restaurant.phone %></h4>
+            <i class="fa fa-trash-o"></i>   <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/restaurants/#{restaurant.id}", method: :delete %>
             <ul class="nav nav-pills">
-              <li><a data-toggle="pill" href="#menu1-<%= index %>">Add a nearby venue</a></li>
-              <li><a data-toggle="pill" href="#menu2-<%= index %>">Add a nearby restaurant</a></li>
-            </ul>
-
+              <li><a data-toggle="pill" href="#menu3-<%=index%>">Add a nearby venue</a></li>
+            </ul>  
             <div class="tab-content">
-              <div id="menu1-<%= index %>" class="tab-pane fade">
-                <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
-                  <div class="form-group">
-                    <%= label_tag :category, 'What category?'%>
-                    <%= text_field_tag :category, "", list: 'venues' %>
-                    <%= render "datalist" %>
-                    <%= hidden_field_tag :lat, venue.lat %>
-                    <%= hidden_field_tag :lng, venue.lng %>
-                    <%= submit_tag "Submit" %>
-                  </div>  
+              <div id="menu3-<%= index %>" class="tab-pane fade">
+                <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>  
+                  <div class="well"> 
+                    <div class="form-group">
+                      <%= label_tag :category, 'What category?'%>
+                      <%= text_field_tag :category, "", list: 'venues' %>
+                      <%= render "datalist" %>
+                      <%= hidden_field_tag :lat, restaurant.lat %>
+                      <%= hidden_field_tag :lng, restaurant.lng %>
+                      <input class="btn btn-default" type="submit" value="Find It">
+                    </div> 
+                  </div>   
                 <% end %>
               </div>
-              <div id="menu2-<%= index %>" class="tab-pane fade">
-                <%= form_tag "/itineraries/#{@itinerary.id}/restaurants", method: :get do %>
-                  <div class="form-group">
-                    <%= label_tag :type, 'What kind of restaurant?'%>
-                    <%= text_field_tag :type %>
-                    <%= hidden_field_tag :lat, venue.lat %>
-                    <%= hidden_field_tag :lng, venue.lng %>
-                    <%= submit_tag "Submit" %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          
-
-        <% end %>
-          
-        <% @itinerary.restaurants.each_with_index do |restaurant, index| %>
-          <h3>Restaurant: <%= restaurant.name %></h3>
-          <h4>Address: <%= restaurant.address %></h4>
-          <h4>Phone: <%= restaurant.phone %></h4>
-          <i class="fa fa-trash-o"></i>   <%= link_to "Remove from trip", "/itineraries/#{@itinerary.id}/restaurants/#{restaurant.id}", method: :delete %>
-          <ul class="nav nav-pills">
-            <li><a data-toggle="pill" href="#menu3-<%=index%>">Add a nearby venue</a></li>
-          </ul>  
-          <div id="menu3-<%= index %>" class="tab-pane fade">
-            <%= form_tag "/itineraries/#{@itinerary.id}/venues", method: :get do %>
-              <div class="form-group">
-                <%= label_tag :category, 'What category?'%>
-                <%= text_field_tag :category, "", list: 'venues' %>
-                <%= render "datalist" %>
-                <%= hidden_field_tag :lat, restaurant.lat %>
-                <%= hidden_field_tag :lng, restaurant.lng %>
-                <%= submit_tag "Submit" %>
-              </div>  
-            <% end %>
-          </div>  
-        <% end %>
-        <%= form_tag "/itineraries/#{@itinerary.id}", method: :patch do %>
-        <div class="ready">
-          <button type="submit" class="btn btn-lg btn-success">I'm ready to go!</button>
-        </div>  
-        <% end %>
+            </div>    
+          <% end %>
+        </div> 
       <% end %>
     </div>
-    <div class="col-sm-6">
+    <div class="col-md-6">
       <% if @markers %>
         <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:blue|<%=@markers%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
       <% else %>
         <img src="https://maps.googleapis.com/maps/api/staticmap?center=39.5,-98.35&zoom=3&size=400x400&maptype=satellite&key=<%=ENV['GOOGLE_MAPS_KEY']%>">
-      <% end %>    
+      <% end %> 
+      <% if @itinerary.venues.count > 0 || @itinerary.restaurants.count > 0%>
+        <%= form_tag "/itineraries/#{@itinerary.id}", method: :patch do %>
+          <div class="ready">
+            <button type="submit" class="btn btn-lg btn-success">I'm ready to go!</button>
+          </div>  
+        <% end %>
+      <% end %>     
     </div>
   </div>
 </div>

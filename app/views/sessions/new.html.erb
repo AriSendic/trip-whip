@@ -1,16 +1,25 @@
 <div class="container">
-    <div class="row">
-    <h1>Login</h1>
-    <%= form_tag '/login', method: :post do %>
-      <div>
-        <%= label_tag :email %>
-        <%= text_field_tag :email %>
-      </div>
-      <div>
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-      </div>
-      <%= submit_tag "Submit" %>
-    <% end %>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="body-plain__title">
+            <h1 class="text-center">Sign In</h1>
+          </div>
+        </div> 
+      </div> <!-- / .row -->
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-sm-offset-3 col-md-offset-3 col-lg-offset-4">
+          <div class="body-plain__form">
+            <%= form_tag '/login', method: :post do %>
+              <div>
+                <%= label_tag :email  %>
+                <%= text_field_tag :email %>
+              </div>
+              <div>
+                <%= label_tag :password %>
+                <%= password_field_tag :password %>
+              </div>
+              <%= submit_tag "Submit" %>
+            <% end %>
+          </div>  
   </div>
 </div>  
