@@ -6,9 +6,16 @@
         <h4><%= @data["result"]["formatted_address"].split(", ")[0...-1].join(", ") %></h4>
         <h4><%= @data["result"]["formatted_phone_number"] %></h4>
         <% if @data["result"]["opening_hours"] %>
-          <h4>Hours: <% @data["result"]["opening_hours"]["weekday_text"].each do |day|%></h4>
-            <p><%= day %></p>
-          <% end %>  
+          <h4 class="lower powered">Hours </h4>
+            <table class="weather">
+              <% @data["result"]["opening_hours"]["weekday_text"].each do |day|%></h4>
+              <% day=day.split(" ")%>
+                <tr>
+                  <h5><td class="pad"><%= day[0] %></td>
+                  <td class="pad"><%= day [1..-1].join("") %></td> </h5>
+                </tr>             
+              <% end %>
+            </table>  
         <% end %>
         <%= form_tag url, method: :post do %>
           <%= hidden_field_tag :api_id, @data["result"]["place_id"] %>
@@ -18,9 +25,9 @@
           <%= hidden_field_tag :address, @data["result"]["formatted_address"].split(", ")[0...-1].join(", ") %>
           <%= hidden_field_tag :phone, @data["result"]["formatted_phone_number"] %>
           <%= hidden_field_tag :itinerary_id, @itinerary.id %>
-         <button type="submit" class="btn btn-success">Add to itinerary!</button>
+         <button type="submit" class="btn btn-success lower">Add to itinerary!</button>
 
-         <button class="btn btn-warning" onclick="goBack()">Back to the list</button>
+         <button class="btn btn-warning lower powered" onclick="goBack()">Back to the list</button>
           
         <% end %>
       

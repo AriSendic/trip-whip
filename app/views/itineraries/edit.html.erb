@@ -94,7 +94,7 @@
       <% if @itinerary.venues.count > 0 || @itinerary.restaurants.count > 0%>
         <%= form_tag "/itineraries/#{@itinerary.id}", method: :patch do %>
           <div class="ready">
-            <button type="submit" class="btn btn-lg btn-success">I'm ready to go!</button>
+            <button type="submit" class="btn btn-lg btn-success map">I'm ready to go!</button>
           </div>  
         <% end %>
       <% end %>     

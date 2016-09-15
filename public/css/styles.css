@@ -9813,5 +9813,12 @@ iframe[src="about:blank"] {
   font-family: 'Racing Sans One', cursive;
 }
 .map {
-  margin-bottom: 13 px;
+  margin-bottom: 13px;
 }
+.weather {
+  width: 50%;    
+ }
+ .pad {
+  padding: 3px;
+ }
+
