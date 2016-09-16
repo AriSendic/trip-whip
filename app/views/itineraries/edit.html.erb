@@ -37,7 +37,7 @@
                         <%= render "datalist" %>
                         <%= hidden_field_tag :lat, venue.lat %>
                         <%= hidden_field_tag :lng, venue.lng %>
-                        <input class="btn btn-default" type="submit" value="Find It">
+                        <button type="submit" class="btn btn-success">Find It</button>
                       </div>
                     </div>     
                   <% end %>
@@ -50,7 +50,7 @@
                         <%= text_field_tag :type %>
                         <%= hidden_field_tag :lat, venue.lat %>
                         <%= hidden_field_tag :lng, venue.lng %>
-                        <input class="btn btn-default" type="submit" value="Find It">
+                        <button type="submit" class="btn btn-success">Find It</button>
                       </div>
                     </div>  
                   <% end %>
@@ -75,7 +75,7 @@
                       <%= render "datalist" %>
                       <%= hidden_field_tag :lat, restaurant.lat %>
                       <%= hidden_field_tag :lng, restaurant.lng %>
-                      <input class="btn btn-default" type="submit" value="Find It">
+                      <button type="submit" class="btn btn-success">Find It</button>
                     </div> 
                   </div>   
                 <% end %>

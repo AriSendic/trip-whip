@@ -26,11 +26,8 @@
           <%= hidden_field_tag :phone, @data["result"]["formatted_phone_number"] %>
           <%= hidden_field_tag :itinerary_id, @itinerary.id %>
          <button type="submit" class="btn btn-success lower">Add to itinerary!</button>
-
          <button class="btn btn-warning lower powered" onclick="goBack()">Back to the list</button>
-          
         <% end %>
-      
       </div>
       <div class="col-sm-6">  
         <% if @data['result']['photos'] %>
@@ -39,6 +36,5 @@
         <img src="https://maps.googleapis.com/maps/api/staticmap?markers=color:green|<%=@data["result"]["geometry"]["location"]["lat"]%>,<%=@data["result"]["geometry"]["location"]["lng"]%>&markers=color:blue|size:mid|<%=saved_markers%>&size=400x400&key=<%=ENV['GOOGLE_MAPS_KEY']%>" class="powered map">
       </div>
     </div>    
-   
   </div>
 </body>
