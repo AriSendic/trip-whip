@@ -13,6 +13,6 @@ class PostsController < ApplicationController
   end
   
   def show
-    # @posts = posts.where(venue_id=....)
+    
   end
 end

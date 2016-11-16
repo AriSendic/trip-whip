@@ -6,22 +6,25 @@ Rails.application.routes.draw do
   get '/itineraries/:id/edit' => 'itineraries#edit'
   patch '/itineraries/:id' => 'itineraries#update'
   delete '/itineraries/:id' => 'itineraries#destroy'
+  
   get '/itineraries/:itinerary_id/venues' => 'venues#index'
-  post '/itineraries/:itinerary_id/venues' => 'venues#create'
   get '/itineraries/:itinerary_id/venues/:place_id' => 'venues#show'
+  post '/itineraries/:itinerary_id/venues' => 'venues#create'
   delete '/itineraries/:itinerary_id/venues/:venue_id' => 'venues#destroy'
+  patch '/itineraries/:itinerary_id/venues/:venue_id' => 'posts#create'
+  
   get '/itineraries/:itinerary_id/restaurants' => 'restaurants#index'
   get '/itineraries/:itinerary_id/restaurants/:place_id' => 'restaurants#show'
-  delete '/itineraries/:itinerary_id/restaurants/:restaurant_id' => 'restaurants#destroy'
   post '/itineraries/:itinerary_id/restaurants' => 'restaurants#create'
-  patch '/itineraries/:itinerary_id/venues/:venue_id' => 'posts#create'
+  delete '/itineraries/:itinerary_id/restaurants/:restaurant_id' => 'restaurants#destroy'
+  
   get '/signup' => 'users#new', as: :sign_up
   post '/users' => 'users#create'   
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  get '/projects' => 'projects#index'
-  get 'projects/:id' => 'projects#show'
+  # get '/projects' => 'projects#index'
+  # get 'projects/:id' => 'projects#show'
   # get '/projects/:id/edit' => 'projects#edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
