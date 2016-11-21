@@ -1,5 +1,4 @@
 class ItinerariesController < ApplicationController
-  require 'yelp'
   require 'unirest'
   def index
     @itineraries = Itinerary.where(user_id: current_user.id)
