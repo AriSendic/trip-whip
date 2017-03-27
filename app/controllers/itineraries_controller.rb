@@ -1,5 +1,7 @@
 class ItinerariesController < ApplicationController
   require 'unirest'
+  before_action :authenticate_user!
+  
   def index
     @itineraries = Itinerary.where(user_id: current_user.id)
   end 
