@@ -87,15 +87,10 @@
             </li>
 
             <!-- UI Elements -->
+            <% if current_user %>
             <li><a href="/logout">Sign out</a></li>
+            <% end %>
           </ul>
-          <!-- Search form (for collapsed menu only) -->
-          <form class="navbar-form navbar-left visible-xs visible-sm" role="search">
-            <div class="form-group">
-              <label class="sr-only" for="nav-search-xs">Search</label>
-              <input type="search" class="form-control" id="nav-search-xs" placeholder="Search here...">
-            </div>
-          </form>
         </div> <!-- / .navbar-collapse -->
       </div> <!-- / .container -->
     </div> <!-- / .navbar -->
