@@ -14,18 +14,20 @@ class RestaurantsController < ApplicationController
     @data = Unirest.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=#{@restaurant_id}&key=#{ENV['GOOGLE_PLACES_KEY']}").body
     @restaurants = Restaurant.where(api_id: params[:restaurant_id])
     if @restaurants.count > 0
-      @venues = []
       @itineraries = []
       @restaurants.each do |restaurant|
-        @itineraries << restaurant.itinerary
+        @itineraries << restaurant.itinerary unless restaurant.itinerary.pending
       end  
-      @itineraries.each do |itinerary|
-        itinerary.venues.each do |venue|
-          @venues << venue.name
-        end
-      end    
-      @venues.uniq!
-      @venues = @venues.join(" or ")      
+      if @itineraries.count > 0
+        @venues = []
+        @itineraries.each do |itinerary|
+          itinerary.venues.each do |venue|
+            @venues << venue.name
+          end
+        end    
+        @venues.uniq!
+        @venues = @venues.join(" or ")
+      end        
     end  
 
     if @itinerary.venues.count == 3
